@@ -1,3 +1,23 @@
 <div class="aside">
   <div class="logo">PELIO</div>
+
+  <div class="menu">
+    <ul>
+      <li *ngFor="let menuItem of menuItems">
+        <span
+          ><a
+            [ngClass]="{
+              wallet: menuItem.class === 'wallet',
+              invoice: menuItem.class === 'invoice',
+              settings: menuItem.class === 'settings',
+              transactions: menuItem.class === 'transactions',
+              payment: menuItem.class === 'payment'
+            }"
+            routerLink="{{ menuItem.src }}"
+            >{{ menuItem.text }}</a
+          ></span
+        >
+      </li>
+    </ul>
+  </div>
 </div>

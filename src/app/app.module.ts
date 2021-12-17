@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
 import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.component';
 import { AsideComponent } from './pages/aside/aside.component';
+import { TranzactionsComponent } from './tranzactions/tranzactions.component';
 @NgModule({
   declarations: [
     AppComponent,
     AuthLayoutComponent,
     SiteLayoutComponent,
     AsideComponent,
+    TranzactionsComponent,
   ],
   imports: [
     BrowserModule,
