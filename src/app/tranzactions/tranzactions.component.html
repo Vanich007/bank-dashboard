@@ -11,8 +11,18 @@
       </div>
     </div>
     <div class="column2">
-      <p>Amount</p>
-      {{ transaction.amount }}
+      <div class="amount-label">Amount</div>
+      <div class="amount">$ {{ transaction.amount }}</div>
+    </div>
+
+    <div class="column3">
+      <div class="transaction-date">{{ transaction.date | date }}</div>
+    </div>
+    <div class="column3">
+      <img src="../../assets/print.png" alt="" />
+    </div>
+    <div class="column3">
+      <div class="else">...</div>
     </div>
   </div>
 </div>

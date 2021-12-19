@@ -1,5 +1,5 @@
 import { TransactionsService } from './../transactions.service';
-import { TransactionType } from './../transactionTypes';
+import { TransactionType } from '../types';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,9 +11,10 @@ export class TranzactionsComponent implements OnInit {
   transactions?: TransactionType[];
   constructor(private transactionsService: TransactionsService) {}
   getTransactions() {
-    this.transactionsService
-      .getTransactions()
-      .subscribe((t) => (this.transactions = t));
+    this.transactionsService.getTransactions().subscribe((t) => {
+      this.transactions = t;
+      console.log(t);
+    });
   }
   ngOnInit(): void {
     this.getTransactions();

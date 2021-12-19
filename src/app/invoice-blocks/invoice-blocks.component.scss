@@ -1,0 +1,88 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-family: "DM Sans", sans-serif;
+  margin: 20px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: transparent;
+  padding: 40px;
+  overflow: hidden;
+}
+.blocks-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.block {
+  position: relative;
+  margin-left: 38px;
+  width: 340px;
+  height: 149px;
+  overflow: hidden;
+  background: #03b664;
+  border-radius: 20px;
+  .amount {
+    position: relative;
+    padding-top: 30px;
+    padding-left: 105px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 39px;
+    color: #ffffff;
+    &::before {
+      content: " ";
+      position: absolute;
+      left: 50px;
+      top: 37px;
+      width: 45px;
+      height: 45px;
+      background: #ffffff;
+      opacity: 0.2;
+      border-radius: 10px;
+    }
+    img {
+      position: absolute;
+      left: 61px;
+      top: 48px;
+    }
+  }
+  &::after {
+  }
+  span {
+    position: relative;
+    padding-top: 30px;
+    padding-left: 105px;
+    padding-top: 4px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 21px;
+
+    color: #ffffff;
+  }
+}
+.circle-after {
+  position: relative;
+  right: -250px;
+  top: -10px;
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+
+  background: #ffffff;
+  opacity: 0.1;
+}
+.paid-invoices {
+  background: #01beff;
+}
+.unpaid-invoices {
+  background: #ffbf26;
+}
+.total-invoices-sent {
+  background: #ff684d;
+}

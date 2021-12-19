@@ -11,6 +11,8 @@ import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.co
 import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.component';
 import { AsideComponent } from './pages/aside/aside.component';
 import { TranzactionsComponent } from './tranzactions/tranzactions.component';
+import { InvoiceBlocksComponent } from './invoice-blocks/invoice-blocks.component';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +20,8 @@ import { TranzactionsComponent } from './tranzactions/tranzactions.component';
     SiteLayoutComponent,
     AsideComponent,
     TranzactionsComponent,
+    InvoiceBlocksComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

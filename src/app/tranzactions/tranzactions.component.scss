@@ -1,17 +1,19 @@
 .transaction-table {
   font-family: "DM Sans", sans-serif;
   margin: 20px;
-  width: 600px;
-  height: 400px;
+  width: 1097px;
+  height: 597px;
   border-radius: 20px;
   background-color: white;
   padding: 40px;
+  overflow: hidden;
   h2 {
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
     line-height: 31px;
     color: #171b1e;
+    padding-bottom: 41px;
   }
   ul {
     li {
@@ -29,7 +31,7 @@
   }
 }
 .transaction {
-  padding-top: 53px;
+  padding-bottom: 53px;
   &:first-child {
     padding-top: 41px;
     background-color: aqua;
@@ -45,18 +47,54 @@
   flex-direction: column;
 }
 .column2 {
+  position: relative;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   font-size: 18px;
   line-height: 23px;
   color: #171b1e;
-  p {
+  margin: 0;
+  .amount-label {
+    font-size: 14px;
+    line-height: 18px;
+    color: #72757a;
+    &::before {
+      content: url("../../assets/amount.png");
+      position: absolute;
+      left: -50px;
+      top: 0;
+      // padding: 12px;
+      background: transparent;
+      opacity: 1;
+      border-radius: 5px;
+    }
+  }
+
+  .amount {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+  }
+}
+.column3 {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  .transaction-date {
     font-size: 14px;
     line-height: 18px;
     color: #72757a;
   }
+  .else {
+    color: #a9afb8;
+    font-size: 3rem;
+    position: relative;
+    top: -30px;
+  }
 }
+
 .transaction-id {
   font-style: normal;
   font-weight: 500;

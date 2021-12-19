@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <div class="blocks-container">
+    <div class="block">
+      <div class="amount">
+        <img src="../../assets/totalwhite.png" />{{ statistics?.totalInvoices }}
+      </div>
+      <span>Total Invoices</span>
+      <div class="circle-after"></div>
+    </div>
+
+    <div class="block paid-invoices">
+      <div class="amount">
+        <img src="../../assets/paidinvoices.png" />{{
+          statistics?.paidInvoices
+        }}
+      </div>
+      <span>Paid Invoices</span>
+      <div class="circle-after"></div>
+    </div>
+
+    <div class="block unpaid-invoices">
+      <div class="amount">
+        <img src="../../assets/unpaid.png" />{{ statistics?.unpaidInvoices }}
+      </div>
+      <span>Total Invoices</span>
+      <div class="circle-after"></div>
+    </div>
+    <div class="block total-invoices-sent">
+      <div class="amount">
+        <img src="../../assets/totalinvoicessent.png" />{{
+          statistics?.totalInvoicesSent
+        }}
+      </div>
+      <span>Total Invoices Sent</span>
+      <div class="circle-after"></div>
+    </div>
+  </div>
+</div>
