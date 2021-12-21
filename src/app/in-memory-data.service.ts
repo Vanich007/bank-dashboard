@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { TransactionType, invoicesStatisticsType } from './types';
+import {
+  TransactionType,
+  invoicesStatisticsType,
+  InvoiceType,
+  InvoiceEnumType,
+  InvoiceEnumPeriod,
+} from './types';
 
 @Injectable({
   providedIn: 'root',
@@ -75,7 +81,49 @@ export class InMemoryDataService implements InMemoryDbService {
       unpaidInvoices: 3456,
       totalInvoicesSent: 6321,
     };
-    return { invoicesStatistics, transactions };
+    const invoices = [
+      {
+        id: 1,
+        amount: 130,
+        date: new Date(),
+        name: 'Dr Nice payment',
+        type: InvoiceEnumType.outcoming,
+        period: InvoiceEnumPeriod.mounthly,
+      },
+      {
+        id: 2,
+        amount: 2000,
+        date: new Date(),
+        name: 'salary',
+        type: InvoiceEnumType.incoming,
+        period: InvoiceEnumPeriod.mounthly,
+      },
+      {
+        id: 3,
+        amount: 350,
+        date: new Date(),
+        name: 'renting an apartment for rent',
+        type: InvoiceEnumType.incoming,
+        period: InvoiceEnumPeriod.mounthly,
+      },
+      {
+        id: 4,
+        amount: 10,
+        date: new Date(),
+        name: 'utilities',
+        type: InvoiceEnumType.incoming,
+        period: InvoiceEnumPeriod.weekly,
+      },
+      {
+        id: 5,
+        amount: 20,
+        date: new Date(),
+        name: 'freelance',
+        type: InvoiceEnumType.incoming,
+        period: InvoiceEnumPeriod.dayly,
+      },
+    ] as Array<InvoiceType>;
+    return { invoicesStatistics, transactions, invoices };
   }
 
   // Overrides the genId method to ensure that a hero always has an id.

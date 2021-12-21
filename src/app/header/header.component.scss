@@ -1,8 +1,12 @@
+:host {
+  width: 100%;
+}
 header {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   padding-top: 39px;
-  padding-left: 104px;
+  padding-left: calc(100% / 15);
   font-family: "DM Sans", sans-serif;
   .dash {
     font-style: normal;
@@ -18,10 +22,10 @@ header {
     }
   }
   .search-box {
-    margin-left: 122px;
+    // margin-left: 122px;
     padding-right: 20px;
     padding-left: 30px;
-    width: 415px;
+    width: calc(100% / 4);
     height: 60px;
     border: 1px #ffffff solid; //цвет рамки
     border-radius: 15px;
@@ -43,28 +47,18 @@ header {
       background: #ffffff !important; // же
       color: #72757a;
       margin-top: 20px;
-      width: 350px;
+      width: 90%;
     }
-    ::-webkit-input-placeholder {
-      // padding-left: 30px;
-      // padding-top: 20px;
-    }
-    ::-moz-placeholder {
-      // padding-left: 30px;
-      // padding-top: 20px;
-    } /* Firefox 19+ */
-    :-moz-placeholder {
-      // padding-left: 30px;
-      // padding-top: 20px;
-    } /* Firefox 18- */
-    :-ms-input-placeholder {
-      // padding-left: 30px;
-      // padding-top: 20px;
-    }
+  }
+  .notifications-block {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
   }
   .notifications {
     position: relative;
-    margin-left: 131px;
+    margin-left: 20px;
 
     img {
       padding: 20px;
@@ -92,10 +86,10 @@ header {
     }
   }
   .email {
-    margin-left: 52px;
+    margin-left: 20px;
   }
   .user {
-    margin-left: 62px;
+    margin-left: 40px;
     display: flex;
     flex-direction: row;
     .avatar {

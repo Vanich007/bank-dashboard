@@ -1,0 +1,10 @@
+<div *ngIf="invoice">
+    <h2>{{ invoice.name  }} Details</h2>
+    <div><span>id: </span>{{ invoice.id }}</div>
+    <div>
+      <label for="hero-name">Hero name: </label>
+      <input id="hero-name" [(ngModel)]="invoice.name" placeholder="name" />
+    </div>
+  </div>
+  <button (click)="save()">save</button>
+  <button (click)="goBack()">go back</button>

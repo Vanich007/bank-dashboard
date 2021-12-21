@@ -10,3 +10,21 @@ export type invoicesStatisticsType = {
   unpaidInvoices: number;
   totalInvoicesSent: number;
 };
+export enum InvoiceEnumType {
+  incoming,
+  outcoming,
+}
+export enum InvoiceEnumPeriod {
+  dayly,
+  weekly,
+  mounthly,
+  annually,
+}
+export type InvoiceType = {
+  id: number;
+  date: Date;
+  amount: number;
+  name: string;
+  type: InvoiceEnumType;
+  period: InvoiceEnumPeriod;
+};

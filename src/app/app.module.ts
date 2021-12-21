@@ -10,9 +10,12 @@ import { AppComponent } from './app.component';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
 import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.component';
 import { AsideComponent } from './pages/aside/aside.component';
-import { TranzactionsComponent } from './tranzactions/tranzactions.component';
+import { TranzactionsComponent } from './invoices/invoices.component';
 import { InvoiceBlocksComponent } from './invoice-blocks/invoice-blocks.component';
 import { HeaderComponent } from './header/header.component';
+import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
+import { FormsModule } from '@angular/forms';
+import { SummaryComponent } from './summary/summary.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,12 +25,14 @@ import { HeaderComponent } from './header/header.component';
     TranzactionsComponent,
     InvoiceBlocksComponent,
     HeaderComponent,
+    InvoiceDetailComponent,
+    SummaryComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
+    FormsModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
