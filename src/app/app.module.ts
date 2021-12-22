@@ -14,8 +14,13 @@ import { TranzactionsComponent } from './invoices/invoices.component';
 import { InvoiceBlocksComponent } from './invoice-blocks/invoice-blocks.component';
 import { HeaderComponent } from './header/header.component';
 import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SummaryComponent } from './summary/summary.component';
+import {
+  DlDateTimeDateModule,
+  DlDateTimePickerModule,
+} from 'angular-bootstrap-datetimepicker';
+import { DatePickerInputComponent } from './date-picker-input/date-picker-input.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,18 +32,21 @@ import { SummaryComponent } from './summary/summary.component';
     HeaderComponent,
     InvoiceDetailComponent,
     SummaryComponent,
+    // DatePickerInputComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    ReactiveFormsModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),
+    // DlDateTimeDateModule, // <--- Determines the data type of the model
+    // DlDateTimePickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
