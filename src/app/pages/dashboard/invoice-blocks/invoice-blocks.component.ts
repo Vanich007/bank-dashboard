@@ -1,4 +1,4 @@
-import { invoicesStatisticsType } from './../types';
+import { invoicesStatisticsType } from '../../../types';
 import { StatisticsService } from './../statistics.service';
 import { Component, OnInit } from '@angular/core';
 

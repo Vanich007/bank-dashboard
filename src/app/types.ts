@@ -25,6 +25,6 @@ export type InvoiceType = {
   date: Date;
   amount: number;
   name: string;
-  type: InvoiceEnumType;
+  type: number;
   period: InvoiceEnumPeriod;
 };

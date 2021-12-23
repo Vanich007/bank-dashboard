@@ -1,4 +1,8 @@
-import { InvoiceEnumType, InvoiceEnumPeriod, InvoiceType } from './../types';
+import {
+  InvoiceEnumType,
+  InvoiceEnumPeriod,
+  InvoiceType,
+} from '../../../types';
 import { InvoiceService } from './../invoice.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -64,7 +68,7 @@ export class InvoiceDetailComponent implements OnInit {
     amount: 0,
     date: new Date(),
     name: '',
-    type: InvoiceEnumType.outcoming,
+    type: 1,
     period: InvoiceEnumPeriod.mounthly,
   };
   constructor(

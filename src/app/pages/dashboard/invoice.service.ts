@@ -1,4 +1,4 @@
-import { InvoiceType } from './types';
+import { InvoiceType } from '../../types';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';

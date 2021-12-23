@@ -1,5 +1,5 @@
 import { InvoiceService } from './../invoice.service';
-import { InvoiceType } from './../types';
+import { InvoiceType } from '../../../types';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

@@ -87,7 +87,7 @@ export class InMemoryDataService implements InMemoryDbService {
         amount: 130,
         date: new Date(),
         name: 'Dr Nice payment',
-        type: InvoiceEnumType.outcoming,
+        type: 1,
         period: InvoiceEnumPeriod.mounthly,
       },
       {
@@ -95,7 +95,7 @@ export class InMemoryDataService implements InMemoryDbService {
         amount: 2000,
         date: new Date(),
         name: 'salary',
-        type: InvoiceEnumType.incoming,
+        type: 0,
         period: InvoiceEnumPeriod.mounthly,
       },
       {
@@ -103,7 +103,7 @@ export class InMemoryDataService implements InMemoryDbService {
         amount: 350,
         date: new Date(),
         name: 'renting an apartment for rent',
-        type: InvoiceEnumType.incoming,
+        type: 0,
         period: InvoiceEnumPeriod.mounthly,
       },
       {
@@ -111,7 +111,7 @@ export class InMemoryDataService implements InMemoryDbService {
         amount: 10,
         date: new Date(),
         name: 'utilities',
-        type: InvoiceEnumType.incoming,
+        type: 0,
         period: InvoiceEnumPeriod.weekly,
       },
       {
@@ -119,7 +119,7 @@ export class InMemoryDataService implements InMemoryDbService {
         amount: 20,
         date: new Date(),
         name: 'freelance',
-        type: InvoiceEnumType.incoming,
+        type: 0,
         period: InvoiceEnumPeriod.dayly,
       },
     ] as Array<InvoiceType>;
