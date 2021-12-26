@@ -1,0 +1,36 @@
+{
+  "invoices": [
+    {
+      "id": 1,
+      "amount": "1",
+      "date": "2034-01-31T21:00:00.000Z",
+      "name": "Dr Nice payment",
+      "period": 3,
+      "invoiceType": 1
+    },
+    {
+      "id": 4,
+      "amount": "2001",
+      "date": "2018-08-17T21:00:00.000Z",
+      "name": "salary23",
+      "invoiceType": 0,
+      "period": 3
+    },
+    {
+      "amount": "200",
+      "date": "2018-08-17T21:00:00.000Z",
+      "name": "s",
+      "invoiceType": 0,
+      "period": 1,
+      "id": 13
+    },
+    {
+      "name": "salary",
+      "amount": "202",
+      "invoiceType": 0,
+      "period": 2,
+      "date": "2022-07-06T21:00:00.000Z",
+      "id": 14
+    }
+  ]
+}

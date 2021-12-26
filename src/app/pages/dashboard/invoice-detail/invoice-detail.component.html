@@ -1,11 +1,23 @@
 <mat-card>
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <mat-card-title>Invoice card</mat-card-title>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Id</mat-label>
+      <input
+        [readonly]="true"
+        matInput
+        formControlName="id"
+        type="text"
+        class="form-control"
+        matTooltip="SYou can not change id"
+      />
+    </mat-form-field>
+
     <mat-radio-group
       aria-label="Select an option"
-      [(ngModel)]="invoice.type"
       formControlName="invoiceType"
     >
-      <mat-card-title>Invoice card</mat-card-title>
       <mat-radio-button
         *ngFor="let invoiceTypeItem of invoiceTypes"
         [value]="invoiceTypeItem.type"
@@ -16,15 +28,15 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select Invoice period</mat-label>
-      <mat-select formControlName="period" [(ngModel)]="invoice.period">
-        <mat-option value="0">daily</mat-option>
-        <mat-option value="1">weekly</mat-option>
-        <mat-option value="2">monthly</mat-option>
-        <mat-option value="3">annually</mat-option>
+      <mat-select formControlName="period">
+        <mat-option [value]="0">daily</mat-option>
+        <mat-option [value]="1">weekly</mat-option>
+        <mat-option [value]="2">monthly</mat-option>
+        <mat-option [value]="3">annually</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="fill">
+    <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
       <input
         matInput
@@ -34,7 +46,6 @@
         type="text"
         class="form-control"
         formControlName="name"
-        [(ngModel)]="invoice.name"
       />
       <mat-hint>Invoice name required!</mat-hint>
       <mat-error *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
@@ -52,7 +63,6 @@
         type="text"
         class="form-control"
         formControlName="amount"
-        [(ngModel)]="invoice.amount"
       />
       <mat-hint>Please enter a valid number</mat-hint>
       <mat-error
@@ -64,24 +74,55 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Choose a date</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        [(ngModel)]="invoice.date"
-        formControlName="date"
-      />
+      <input matInput [matDatepicker]="picker" formControlName="date" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <mat-card-actions>
+    <!-- <mat-card-actions> -->
+    <div class="buttons-panel">
       <button
-        mat-button
+        mat-fab
         color="primary"
         type="submit"
         [disabled]="form.invalid"
+        aria-label="save icon"
+        matTooltip="Save displayed invoice"
       >
-        Submit
-      </button></mat-card-actions
-    >
+        <mat-icon>save</mat-icon>
+      </button>
+      <button
+        mat-fab
+        color="warn"
+        (click)="deleteInvoice()"
+        aria-label="delete icon"
+        matTooltip="Delete displayed invoice"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <button
+        type="button"
+        mat-fab
+        color="primary"
+        [disabled]="form.invalid"
+        (click)="cloneInvoice()"
+        aria-label="Add"
+        matTooltip="Clone displayed invoice"
+      >
+        <mat-icon>note_add</mat-icon>
+      </button>
+
+      <button
+        type="button"
+        mat-fab
+        color="accent"
+        (click)="reset()"
+        aria-label="Add"
+        matTooltip="Clear form"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+    <!-- </mat-card-actions> -->
   </form>
 </mat-card>

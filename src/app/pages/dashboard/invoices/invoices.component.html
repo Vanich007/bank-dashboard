@@ -3,16 +3,27 @@
 
   <div *ngFor="let invoice of invoices" class="transaction">
     <div class="column1">
-      <a routerLink="detail/{{ invoice.id }}"
-        ><div class="transaction-id">{{ invoice.id }}</div></a
+      <a routerLink="detail/{{ invoice.id }}">
+        <div class="transaction-id"># {{ invoice.id }}</div>
+      </a>
+      <div
+        class="transaction-correspondent"
+        [ngClass]="{
+          income: invoice.invoiceType === 0,
+          outcome: invoice.invoiceType === 1
+        }"
       >
-      <div class="transaction-correspondent">
         {{ invoice.name }}
       </div>
     </div>
     <div class="column2">
-      <div class="amount-label">{{ invoice.period }}</div>
       <div class="amount">$ {{ invoice.amount }}</div>
+      <div [ngSwitch]="invoice.period">
+        <p *ngSwitchCase="0">daily</p>
+        <p *ngSwitchCase="1">weekly</p>
+        <p *ngSwitchCase="2">monthly</p>
+        <p *ngSwitchCase="3">annually</p>
+      </div>
     </div>
 
     <div class="column3">
@@ -25,4 +36,5 @@
       <div class="else">...</div>
     </div>
   </div>
+  <button mat-button color="primary">Add invoice</button>
 </div>

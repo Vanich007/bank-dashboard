@@ -48,6 +48,7 @@
   width: 30%;
 }
 .column2 {
+  width: 10%;
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -102,6 +103,12 @@
   font-size: 14px;
   line-height: 18px;
   color: #01beff;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  p {
+    padding-left: 10px;
+  }
 }
 .transaction-correspondent {
   font-style: normal;
@@ -109,4 +116,16 @@
   font-size: 18px;
   line-height: 23px;
   color: #171b1e;
+}
+.outcome {
+  color: red;
+  &:after {
+    content: "⇘";
+  }
+}
+.income {
+  color: green;
+  &:after {
+    content: "⇗";
+  }
 }

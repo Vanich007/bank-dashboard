@@ -7,7 +7,7 @@ import { catchError, map, Observable, of, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class InvoiceService {
-  invoiceUrl = 'api/invoices';
+  invoiceUrl = 'http://localhost:3000/invoices';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
@@ -16,10 +16,7 @@ export class InvoiceService {
 
   /** GET invoicees from the server */
   getInvoices(): Observable<InvoiceType[]> {
-    return this.http.get<InvoiceType[]>(this.invoiceUrl).pipe(
-      // tap(_ => this.log('fetched invoicees')),
-      catchError(this.handleError<InvoiceType[]>('getinvoicees', []))
-    );
+    return this.http.get<InvoiceType[]>(this.invoiceUrl);
   }
 
   /** GET invoice by id. Return `undefined` when id not found */
@@ -64,6 +61,7 @@ export class InvoiceService {
 
   /** POST: add a new invoice to the server */
   addInvoice(invoice: InvoiceType): Observable<InvoiceType> {
+    console.log('addInvoice', invoice);
     return this.http
       .post<InvoiceType>(this.invoiceUrl, invoice, this.httpOptions)
       .pipe(
@@ -74,6 +72,7 @@ export class InvoiceService {
 
   /** DELETE: delete the invoice from the server */
   deleteInvoice(id: number): Observable<InvoiceType> {
+    console.log('delete', id);
     const url = `${this.invoiceUrl}/${id}`;
 
     return this.http.delete<InvoiceType>(url, this.httpOptions).pipe(
@@ -84,10 +83,13 @@ export class InvoiceService {
 
   /** PUT: update the invoice on the server */
   updateInvoice(invoice: InvoiceType): Observable<any> {
-    return this.http.put(this.invoiceUrl, invoice, this.httpOptions).pipe(
-      // tap(_ => this.log(`updated invoice id=${invoice.id}`)),
-      catchError(this.handleError<any>('updateinvoice'))
-    );
+    console.log('updateInvoice', invoice);
+    return this.http
+      .patch(`${this.invoiceUrl}/${invoice.id}`, invoice, this.httpOptions)
+      .pipe(
+        // tap(_ => this.log(`updated invoice id=${invoice.id}`)),
+        catchError(this.handleError<any>('updateinvoice'))
+      );
   }
 
   /**

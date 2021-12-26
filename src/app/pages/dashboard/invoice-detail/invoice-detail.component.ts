@@ -1,13 +1,47 @@
-import {
-  InvoiceEnumType,
-  InvoiceEnumPeriod,
-  InvoiceType,
-} from '../../../types';
+import { Observable } from 'rxjs';
+import { InvoiceType } from '../../../types';
 import { InvoiceService } from './../invoice.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+// import {
+//   MatDialog,
+//   MatDialogRef,
+//   MAT_DIALOG_DATA,
+// } from '@angular/material/dialog';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
+
+/**
+ * @title Dialog Overview
+ */
+// @Component({
+//   selector: 'dialog-overview-example',
+//   template:
+//     '<button mat-raised-button (click)="openDialog()">Pick one</button>',
+//   styles: [''],
+// })
+// export class DialogOverviewExample {
+//   constructor(public dialog: MatDialog) {}
+
+//   openDialog(): void {
+//     const dialogRef = this.dialog.open(InvoiceDetailComponent, {
+//       width: '250px',
+//       // data: { name: this.name, animal: this.animal },
+//       data: {},
+//     });
+
+//     dialogRef.afterClosed().subscribe((result) => {
+//       console.log('The dialog was closed');
+//       // this.animal = result;
+//     });
+//   }
+// }
 
 @Component({
   selector: 'app-invoice-detail',
@@ -15,7 +49,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./invoice-detail.component.scss'],
 })
 export class InvoiceDetailComponent implements OnInit {
-  submitted = false;
+  // submitted = false;
   form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
   });
@@ -30,9 +64,68 @@ export class InvoiceDetailComponent implements OnInit {
       invoiceType: new FormControl(),
       period: new FormControl(),
       date: new FormControl('', Validators.required),
+      id: new FormControl('', Validators.required),
     });
 
     this.getInvoice();
+  }
+
+  onSubmit() {
+    // this.submitted = true;
+    this.save();
+  }
+  // showFormControls(form: any) {
+  //   return form && form.controls.invoiceType && form.controls.invoiceType.value; // Dr. IQ
+  // }
+
+  invoice: InvoiceType = {
+    id: 0,
+    amount: 0,
+    date: new Date(),
+    name: '',
+    invoiceType: 1,
+    period: 0,
+  };
+
+  constructor(
+    // public dialogRef: MatDialogRef<InvoiceDetailComponent>,
+    // @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private route: ActivatedRoute,
+    private invoiceService: InvoiceService,
+    private location: Location
+  ) {}
+  getInvoice(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.invoiceService.getInvoice(id).subscribe((i) => {
+      this.form.patchValue(i);
+      // this.invoice = i;
+      console.log(i);
+    });
+  }
+  goBack(): void {
+    this.location.back();
+  }
+  reset(): void {
+    this.form.reset();
+  }
+  save(): void {
+    this.invoiceService.updateInvoice(this.form.value).subscribe(() => {
+      this.goBack();
+    });
+  }
+  cloneInvoice(): void {
+    let tempInvoice = { ...this.form.value } as any;
+    delete tempInvoice.id;
+    this.invoiceService.addInvoice(tempInvoice).subscribe(() => this.goBack());
+  }
+  deleteInvoice(): void {
+    if (this.form.value.id)
+      this.invoiceService
+        .deleteInvoice(this.form.value.id)
+        .subscribe(() => console.log('deleted'));
+  }
+  newInvoice() {
+    // this.invoice = new InvoiceType(42, '', '');
   }
 
   invoiceTypes = [
@@ -54,47 +147,4 @@ export class InvoiceDetailComponent implements OnInit {
     },
     { type: 3, text: 'annually' },
   ];
-
-  onSubmit() {
-    this.submitted = true;
-    this.save();
-  }
-  showFormControls(form: any) {
-    return form && form.controls.invoiceType && form.controls.invoiceType.value; // Dr. IQ
-  }
-
-  invoice: InvoiceType = {
-    id: 0,
-    amount: 0,
-    date: new Date(),
-    name: '',
-    type: 1,
-    period: InvoiceEnumPeriod.mounthly,
-  };
-  constructor(
-    private route: ActivatedRoute,
-    private invoiceService: InvoiceService,
-    private location: Location
-  ) {}
-  getInvoice(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.invoiceService.getInvoice(id).subscribe((i) => {
-      this.invoice = i;
-      console.log(i);
-    });
-  }
-  goBack(): void {
-    this.location.back();
-  }
-
-  save(): void {
-    if (this.invoice) {
-      this.invoiceService
-        .updateInvoice(this.invoice)
-        .subscribe(() => this.goBack());
-    }
-  }
-  newInvoice() {
-    // this.invoice = new InvoiceType(42, '', '');
-  }
 }
