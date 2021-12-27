@@ -10,7 +10,7 @@
         formControlName="id"
         type="text"
         class="form-control"
-        matTooltip="SYou can not change id"
+        matTooltip="You can not change id"
       />
     </mat-form-field>
 
@@ -106,7 +106,7 @@
         color="primary"
         [disabled]="form.invalid"
         (click)="cloneInvoice()"
-        aria-label="Add"
+        aria-label="Clone"
         matTooltip="Clone displayed invoice"
       >
         <mat-icon>note_add</mat-icon>
@@ -117,8 +117,19 @@
         mat-fab
         color="accent"
         (click)="reset()"
-        aria-label="Add"
+        aria-label="Reset"
         matTooltip="Clear form"
+      >
+        <mat-icon>backspace</mat-icon>
+      </button>
+
+      <button
+        type="button"
+        mat-fab
+        color="secondary"
+        (click)="goBack()"
+        aria-label="Add"
+        matTooltip="Close form"
       >
         <mat-icon>clear</mat-icon>
       </button>

@@ -1,22 +1,40 @@
-import { InvoiceType } from '../../types';
+import { InvoiceType } from './../../types';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  map,
+  Observable,
+  of,
+  Subject,
+  tap,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InvoiceService {
+  private invoices?: InvoiceType[];
+  invoicesChange = new Subject<InvoiceType[]>();
+
   invoiceUrl = 'http://localhost:3000/invoices';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+  fetchOptionsSubject: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    // this.invoices = [];
+    // this.invoicesSubject = new BehaviorSubject<InvoiceType[]>(this.invoices);
+  }
 
   /** GET invoicees from the server */
-  getInvoices(): Observable<InvoiceType[]> {
-    return this.http.get<InvoiceType[]>(this.invoiceUrl);
+  getInvoices(): void {
+    this.http.get<InvoiceType[]>(this.invoiceUrl).subscribe((i) => {
+      this.invoices = [...i];
+      this.invoicesChange.next(this.invoices);
+    });
   }
 
   /** GET invoice by id. Return `undefined` when id not found */
@@ -42,19 +60,24 @@ export class InvoiceService {
   }
 
   /* GET invoicees whose name contains search term */
-  searchInvoices(term: string): Observable<InvoiceType[]> {
+  searchInvoices(term: string): void {
     if (!term.trim()) {
       // if not search term, return empty invoice array.
-      return of([]);
+      //
+      this.invoices = [];
     }
-    return this.http
-      .get<InvoiceType[]>(`${this.invoiceUrl}/?name=${term}`)
+    this.http
+      .get<InvoiceType[]>(`${this.invoiceUrl}?q=${term}`)
       .pipe(
         // tap(x => x.length ?
         //  this.log(`found invoicees matching "${term}"`) :
         //  this.log(`no invoicees matching "${term}"`)),
         catchError(this.handleError<InvoiceType[]>('searchinvoicees', []))
-      );
+      )
+      .subscribe((i) => {
+        this.invoices = [...i];
+        this.invoicesChange.next(this.invoices);
+      });
   }
 
   //////// Save methods //////////

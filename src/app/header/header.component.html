@@ -1,7 +1,12 @@
 <header>
   <div class="dash">Dashboard</div>
   <div class="search-box">
-    <input type="text" placeholder="Search Here..." />
+    <input
+      type="text"
+      placeholder="Search Here..."
+      #searchInput
+      (input)="onSearch(searchInput.value)"
+    />
   </div>
   <div class="notifications-block">
     <div class="notifications">

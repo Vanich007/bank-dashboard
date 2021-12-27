@@ -7,14 +7,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './invoices.component.html',
   styleUrls: ['./invoices.component.scss'],
 })
-export class TranzactionsComponent implements OnInit {
+export class InvoicesComponent implements OnInit {
   invoices?: InvoiceType[];
   constructor(private invoicesService: InvoiceService) {}
   getTransactions() {
-    this.invoicesService.getInvoices().subscribe((t) => {
-      this.invoices = t;
-      console.log(t);
-    });
+    // this.invoicesService.getInvoices().subscribe((t) => {
+    //   this.invoices = t;    });
+    this.invoicesService.getInvoices();
+    this.invoicesService.invoicesChange.subscribe((i) => (this.invoices = i));
   }
   ngOnInit(): void {
     this.getTransactions();

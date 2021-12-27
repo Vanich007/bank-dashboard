@@ -49,6 +49,7 @@ export interface DialogData {
   styleUrls: ['./invoice-detail.component.scss'],
 })
 export class InvoiceDetailComponent implements OnInit {
+  isNewInvoice: boolean = false;
   // submitted = false;
   form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -64,7 +65,7 @@ export class InvoiceDetailComponent implements OnInit {
       invoiceType: new FormControl(),
       period: new FormControl(),
       date: new FormControl('', Validators.required),
-      id: new FormControl('', Validators.required),
+      id: new FormControl(''),
     });
 
     this.getInvoice();
@@ -95,7 +96,11 @@ export class InvoiceDetailComponent implements OnInit {
     private location: Location
   ) {}
   getInvoice(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const stringId = this.route.snapshot.paramMap.get('id');
+    if (stringId === 'new') {
+      this.isNewInvoice = true;
+    }
+    const id = Number(stringId);
     this.invoiceService.getInvoice(id).subscribe((i) => {
       this.form.patchValue(i);
       // this.invoice = i;
@@ -109,9 +114,11 @@ export class InvoiceDetailComponent implements OnInit {
     this.form.reset();
   }
   save(): void {
-    this.invoiceService.updateInvoice(this.form.value).subscribe(() => {
-      this.goBack();
-    });
+    if (!this.isNewInvoice) {
+      this.invoiceService.updateInvoice(this.form.value).subscribe(() => {
+        this.goBack();
+      });
+    } else this.cloneInvoice();
   }
   cloneInvoice(): void {
     let tempInvoice = { ...this.form.value } as any;
