@@ -1,0 +1,29 @@
+<mat-card>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <mat-card-title>Invoice card</mat-card-title>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Id</mat-label>
+      <input
+        [readonly]="true"
+        matInput
+        formControlName="id"
+        type="text"
+        class="form-control"
+        matTooltip="You can not change id"
+      />
+    </mat-form-field>
+
+    <button
+      type="submit"
+      mat-fab
+      color="secondary"
+      aria-label="Add"
+      matTooltip="Close form"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+
+    <!-- </mat-card-actions> -->
+  </form>
+</mat-card>

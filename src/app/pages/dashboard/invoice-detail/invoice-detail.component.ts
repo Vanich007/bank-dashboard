@@ -1,47 +1,9 @@
-import { Observable } from 'rxjs';
 import { InvoiceType } from '../../../types';
 import { InvoiceService } from './../invoice.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
-// import {
-//   MatDialog,
-//   MatDialogRef,
-//   MAT_DIALOG_DATA,
-// } from '@angular/material/dialog';
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
-
-/**
- * @title Dialog Overview
- */
-// @Component({
-//   selector: 'dialog-overview-example',
-//   template:
-//     '<button mat-raised-button (click)="openDialog()">Pick one</button>',
-//   styles: [''],
-// })
-// export class DialogOverviewExample {
-//   constructor(public dialog: MatDialog) {}
-
-//   openDialog(): void {
-//     const dialogRef = this.dialog.open(InvoiceDetailComponent, {
-//       width: '250px',
-//       // data: { name: this.name, animal: this.animal },
-//       data: {},
-//     });
-
-//     dialogRef.afterClosed().subscribe((result) => {
-//       console.log('The dialog was closed');
-//       // this.animal = result;
-//     });
-//   }
-// }
 
 @Component({
   selector: 'app-invoice-detail',

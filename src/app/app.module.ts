@@ -1,3 +1,4 @@
+import { MaterialModule } from './shared/modules/material.module';
 import { DashboardPageModule } from './pages/dashboard/dashboard.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +15,8 @@ import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
+import { UsersPageModule } from './pages/users/login.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +32,10 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
+    ReactiveFormsModule,
     DashboardPageModule,
+    MaterialModule,
+    UsersPageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

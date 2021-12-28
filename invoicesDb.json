@@ -1,4 +1,5 @@
 {
+  "users": [{ "email": "www@www.ru", "password": "123456" }],
   "invoices": [
     {
       "id": 1,
@@ -31,6 +32,54 @@
       "period": 2,
       "date": "2022-07-06T21:00:00.000Z",
       "id": 14
+    },
+    {
+      "name": "1",
+      "amount": "202",
+      "invoiceType": 0,
+      "period": 2,
+      "date": "2022-07-06T21:00:00.000Z",
+      "id": 15
+    },
+    {
+      "name": "2",
+      "amount": "202",
+      "invoiceType": 0,
+      "period": 2,
+      "date": "2022-07-06T21:00:00.000Z",
+      "id": 16
+    },
+    {
+      "name": "3",
+      "amount": "202",
+      "invoiceType": 0,
+      "period": 2,
+      "date": "2022-07-06T21:00:00.000Z",
+      "id": 17
+    },
+    {
+      "name": "4",
+      "amount": "202",
+      "invoiceType": 0,
+      "period": 2,
+      "date": "2022-07-06T21:00:00.000Z",
+      "id": 18
+    },
+    {
+      "name": "5",
+      "amount": "202",
+      "invoiceType": 0,
+      "period": 2,
+      "date": "2022-07-06T21:00:00.000Z",
+      "id": 19
+    },
+    {
+      "name": "6",
+      "amount": "202",
+      "invoiceType": 0,
+      "period": 2,
+      "date": "2022-07-06T21:00:00.000Z",
+      "id": 20
     }
   ]
 }

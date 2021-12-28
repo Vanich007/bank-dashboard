@@ -36,6 +36,15 @@ export class InvoiceService {
       this.invoicesChange.next(this.invoices);
     });
   }
+  //GET /posts/1/comments?_start=20&_limit=10
+  getInvoicesPart(start: number = 0, limit: number = 10): void {
+    this.http
+      .get<InvoiceType[]>(`${this.invoiceUrl}?_start=${start}&_limit=${limit}`)
+      .subscribe((i) => {
+        this.invoices = [...i];
+        this.invoicesChange.next(this.invoices);
+      });
+  }
 
   /** GET invoice by id. Return `undefined` when id not found */
   getInvoiceNo404<Data>(id: number): Observable<InvoiceType> {
