@@ -28,3 +28,8 @@ export type InvoiceType = {
   invoiceType: number;
   period: number;
 };
+export type UserType = {
+  email: string;
+  password: string;
+  name: string;
+};

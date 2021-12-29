@@ -6,7 +6,7 @@ import { InvoiceService } from './invoice.service';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+
 import { InvoicesComponent } from './invoices/invoices.component';
 import { InvoiceBlocksComponent } from './invoice-blocks/invoice-blocks.component';
 import {

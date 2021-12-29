@@ -1,5 +1,18 @@
 {
-  "users": [{ "email": "www@www.ru", "password": "123456" }],
+  "users": [
+    {
+      "email": "www@www.ru",
+      "password": "123456",
+      "name": "Ivan",
+      "id": 111
+    },
+    {
+      "email": "e@ee",
+      "password": "123456",
+      "name": "Myname",
+      "id": 112
+    }
+  ],
   "invoices": [
     {
       "id": 1,

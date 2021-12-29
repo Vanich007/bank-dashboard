@@ -1,8 +1,6 @@
-import { MaterialModule } from './shared/modules/material.module';
-import { DashboardPageModule } from './pages/dashboard/dashboard.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -16,6 +14,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { UsersPageModule } from './pages/users/login.module';
+import { AuthService } from './shared/services/auth.service';
+import { UserService } from './pages/users/user.service';
+import { RegisterComponent } from './pages/users/register/register.component';
+import { MaterialModule } from './shared/modules/material.module';
+import { DashboardPageModule } from './pages/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,7 @@ import { UsersPageModule } from './pages/users/login.module';
     AsideComponent,
 
     HeaderComponent,
+    RegisterComponent,
 
     // DatePickerInputComponent,
   ],
@@ -36,8 +40,9 @@ import { UsersPageModule } from './pages/users/login.module';
     DashboardPageModule,
     MaterialModule,
     UsersPageModule,
+    RouterModule,
   ],
-  providers: [],
+  providers: [UserService, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

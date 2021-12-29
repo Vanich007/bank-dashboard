@@ -8,11 +8,11 @@ import { UserType } from './../../../types';
 import { UserService } from '../user.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   message = '';
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
@@ -32,9 +32,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.UserService.login(
+    this.UserService.register(
       this.form.value.email,
-      this.form.value.password
+      this.form.value.password,
+      this.form.value.name
     ).subscribe((user: UserType) => {
       console.log(user);
       if (user) {
@@ -51,6 +52,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
+      name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
 
       password: new FormControl('', [

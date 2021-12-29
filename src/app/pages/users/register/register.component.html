@@ -1,7 +1,27 @@
 <mat-card class="login-form">
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
-    <mat-card-title>Login</mat-card-title>
-    <div class="alert">{{ message }}</div>
+    <mat-card-title>Register</mat-card-title>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        formControlName="name"
+        type="text"
+        class="form-control"
+        matTooltip="Enter you name"
+        [ngClass]="{
+          'is-invalid': form.get('name')?.invalid && form.get('name')?.touched
+        }"
+      />
+      <mat-hint>Enter your name</mat-hint>
+      <mat-error *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        Username required!
+      </mat-error>
+    </mat-form-field>
+
+    <br />
+
     <mat-form-field appearance="fill">
       <mat-label>email</mat-label>
       <input
@@ -35,7 +55,7 @@
       <mat-error
         *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
       >
-        Password required!
+        Password required! Min length - 6 symbols.
       </mat-error>
     </mat-form-field>
 
@@ -46,8 +66,9 @@
       aria-label="Add"
       matTooltip="login"
     >
-      Login
+      Register
     </button>
-    <div class="register">or <a routerLink="/register">Register</a></div>
+
+    <div class="register">or <a routerLink="/login">Login</a></div>
   </form>
 </mat-card>
