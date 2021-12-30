@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../shared/guards/auth.guard';
 import { SummaryComponent } from '../../summary/summary.component';
 import { InvoiceDetailComponent } from '../../pages/dashboard/invoice-detail/invoice-detail.component';
 import { SiteLayoutComponent } from '../../shared/layouts/site-layout/site-layout.component';
@@ -8,6 +9,8 @@ const dashboardRoutes: Routes = [
   {
     path: 'dashboard',
     component: SiteLayoutComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
       { path: '', component: SummaryComponent },
       { path: 'detail/:id', component: InvoiceDetailComponent },

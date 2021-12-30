@@ -36,6 +36,11 @@ export class UserService {
       .get<UserType[]>(`${this.usersUrl}?email=${email}`)
       .pipe(map((users: UserType[]) => (users[0] ? users[0] : undefined)));
   }
+  getUserByEmail(email: string): any {
+    return this.http
+      .get<UserType[]>(`${this.usersUrl}?email=${email}`)
+      .pipe(map((users: UserType[]) => (users[0] ? users[0] : undefined)));
+  }
 }
 //,
 //map((response: Response) => response.json())

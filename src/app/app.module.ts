@@ -1,3 +1,4 @@
+import { AuthGuard } from './shared/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -42,7 +43,7 @@ import { DashboardPageModule } from './pages/dashboard/dashboard.module';
     UsersPageModule,
     RouterModule,
   ],
-  providers: [UserService, AuthService],
+  providers: [UserService, AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

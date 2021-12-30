@@ -6,7 +6,7 @@ import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.co
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }];
+const routes: Routes = [{ path: '', redirectTo: '/login', pathMatch: 'full' }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

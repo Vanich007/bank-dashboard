@@ -1,6 +1,7 @@
 .logo {
   margin-top: 10px;
   margin-left: 10px;
+  margin-right: 50px;
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -31,8 +32,7 @@
 }
 nav {
   display: flex;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: large;
+
   flex-direction: row;
   align-items: stretch;
   height: 70px;
@@ -42,10 +42,30 @@ nav {
     border: gray 1px solid;
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    border-radius: 5px;
     .nav-button {
-      height: 50%;
-      padding: 10px;
+      display: block;
       margin: 5px;
+      //   padding: 10px;
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+
+      width: 150px;
+      a {
+        height: 100%;
+        display: flex;
+        margin: auto;
+        text-decoration: none;
+        align-items: center;
+        justify-content: space-around;
+        &:hover {
+          background-color: #3f51b5;
+          color: white;
+          transition: 1s;
+        }
+      }
     }
   }
 }
