@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="isLoaded">
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
     <mat-card-title>Invoice card</mat-card-title>
 
@@ -90,6 +90,7 @@
       >
         <mat-icon>save</mat-icon>
       </button>
+
       <button
         mat-fab
         color="warn"
@@ -137,3 +138,4 @@
     <!-- </mat-card-actions> -->
   </form>
 </mat-card>
+<mat-card *ngIf="!isLoaded"><app-loader></app-loader></mat-card>

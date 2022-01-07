@@ -1,3 +1,5 @@
+import { UserService } from './../pages/users/user.service';
+import { UsersPageModule } from './../pages/users/login.module';
 import { AuthService } from './../shared/services/auth.service';
 import { InvoiceService } from './../pages/dashboard/invoice.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,21 +15,28 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private invoiceService: InvoiceService,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    if (this.authService.isLoggedIn()) {
-      const user = window.localStorage.getItem('user');
+    const user = window.localStorage.getItem('user');
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userService.login(userObj.email, userObj.password);
 
-      if (user) {
-        const userObj = JSON.parse(user);
-        this.email = userObj.email ? userObj.email : '';
-        this.name = userObj.name ? userObj.name : '';
+      if (this.authService.isLoggedIn()) {
+        if (user) {
+          this.email = userObj.email ? userObj.email : '';
+          this.name = userObj.name ? userObj.name : '';
+        }
       }
     }
   }
   onSearch(value: string) {
     this.invoiceService.searchInvoices(value);
+  }
+  logout() {
+    this.authService.logout();
   }
 }

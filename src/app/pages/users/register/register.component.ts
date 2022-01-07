@@ -44,7 +44,6 @@ export class RegisterComponent implements OnInit {
         this.form.value.name
       )
       .subscribe((user: UserType) => {
-        console.log(user);
         if (user) {
           if (user.password === this.form.value.password) {
             this.authService.login();

@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
       this.form.value.email,
       this.form.value.password
     ).subscribe((user: UserType) => {
-      console.log(user);
       if (user) {
         if (user.password === this.form.value.password) {
           this.authService.login();

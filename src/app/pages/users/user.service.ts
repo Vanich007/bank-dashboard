@@ -1,3 +1,4 @@
+import { BaseApi } from './../../core/base-api';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, Subject, tap } from 'rxjs';
@@ -7,40 +8,33 @@ import { UserType } from '../../types';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
-  private isLoggedIn: boolean = false;
+export class UserService extends BaseApi {
   loginChange = new Subject<UserType[]>();
 
-  usersUrl = 'http://localhost:3000/users';
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  };
+  usersUrl = 'users';
+
   fetchOptionsSubject: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(public override http: HttpClient) {
+    super(http);
+  }
 
   register(
     email: string,
     password: string,
     name: string
   ): Observable<UserType> {
-    return this.http.post<UserType>(
-      this.usersUrl,
-      { email, password, name },
-      this.httpOptions
-    );
+    return this.post(this.usersUrl, { email, password, name });
   }
 
   login(email: string, password: string): any {
-    return this.http
-      .get<UserType[]>(`${this.usersUrl}?email=${email}`)
-      .pipe(map((users: UserType[]) => (users[0] ? users[0] : undefined)));
+    return this.get(`${this.usersUrl}?email=${email}`).pipe(
+      map((users: UserType[]) => (users[0] ? users[0] : undefined))
+    );
   }
   getUserByEmail(email: string): any {
-    return this.http
-      .get<UserType[]>(`${this.usersUrl}?email=${email}`)
-      .pipe(map((users: UserType[]) => (users[0] ? users[0] : undefined)));
+    return this.get(`${this.usersUrl}?email=${email}`).pipe(
+      map((users: UserType[]) => (users[0] ? users[0] : undefined))
+    );
   }
 }
-//,
-//map((response: Response) => response.json())

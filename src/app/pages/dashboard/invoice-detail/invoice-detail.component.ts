@@ -1,21 +1,27 @@
 import { InvoiceType } from '../../../types';
 import { InvoiceService } from './../invoice.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-invoice-detail',
   templateUrl: './invoice-detail.component.html',
   styleUrls: ['./invoice-detail.component.scss'],
 })
-export class InvoiceDetailComponent implements OnInit {
+export class InvoiceDetailComponent implements OnInit, OnDestroy {
+  isLoaded: boolean = false;
+  sub?: Subscription;
   isNewInvoice: boolean = false;
   // submitted = false;
   form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
   });
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -34,12 +40,8 @@ export class InvoiceDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.submitted = true;
     this.save();
   }
-  // showFormControls(form: any) {
-  //   return form && form.controls.invoiceType && form.controls.invoiceType.value; // Dr. IQ
-  // }
 
   invoice: InvoiceType = {
     id: 0,
@@ -51,8 +53,6 @@ export class InvoiceDetailComponent implements OnInit {
   };
 
   constructor(
-    // public dialogRef: MatDialogRef<InvoiceDetailComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private route: ActivatedRoute,
     private invoiceService: InvoiceService,
     private location: Location
@@ -63,10 +63,9 @@ export class InvoiceDetailComponent implements OnInit {
       this.isNewInvoice = true;
     }
     const id = Number(stringId);
-    this.invoiceService.getInvoice(id).subscribe((i) => {
+    this.sub = this.invoiceService.getInvoice(id).subscribe((i) => {
       this.form.patchValue(i);
-      // this.invoice = i;
-      console.log(i);
+      this.isLoaded = true;
     });
   }
   goBack(): void {
@@ -77,25 +76,25 @@ export class InvoiceDetailComponent implements OnInit {
   }
   save(): void {
     if (!this.isNewInvoice) {
-      this.invoiceService.updateInvoice(this.form.value).subscribe(() => {
-        this.goBack();
-      });
+      this.sub = this.invoiceService
+        .updateInvoice(this.form.value)
+        .subscribe(() => {
+          this.goBack();
+        });
     } else this.cloneInvoice();
   }
   cloneInvoice(): void {
     let tempInvoice = { ...this.form.value } as any;
     delete tempInvoice.id;
-    this.invoiceService.addInvoice(tempInvoice).subscribe(() => this.goBack());
+    this.sub = this.invoiceService
+      .addInvoice(tempInvoice)
+      .subscribe(() => this.goBack());
   }
   deleteInvoice(): void {
     if (this.form.value.id)
-      this.invoiceService
-        .deleteInvoice(this.form.value.id)
-        .subscribe(() => console.log('deleted'));
+      this.invoiceService.deleteInvoice(this.form.value.id);
   }
-  newInvoice() {
-    // this.invoice = new InvoiceType(42, '', '');
-  }
+  newInvoice() {}
 
   invoiceTypes = [
     {

@@ -1,7 +1,30 @@
-<div class="transaction-table">
-  <H2>Summary invoices</H2>
+<div class="charts">
+  <app-pie-chart [data]="incoming" [type]="'Incoming invoices'"></app-pie-chart>
+  <app-pie-chart
+    [data]="outcoming"
+    [type]="'Outcoming invoices'"
+  ></app-pie-chart>
+</div>
+<div *ngIf="isLoaded" class="transaction-table">
+  <div class="transaction-table-header">
+    <H2>Summary invoices</H2>
 
-  <div *ngFor="let invoice of invoices" class="transaction">
+    <mat-form-field appearance="fill">
+      <mat-label>Select filter</mat-label>
+      <mat-select
+        ([ngModel])="(typeFilter)"
+        (selectionChange)="eventSelection($event)"
+      >
+        <mat-option [value]="0">incoming</mat-option>
+        <mat-option [value]="1">outcoming</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div
+    *ngFor="let invoice of invoices | cutArray: typeFilter"
+    class="transaction"
+  >
     <div class="column1">
       <a routerLink="detail/{{ invoice.id }}">
         <div class="transaction-id"># {{ invoice.id }}</div>
@@ -13,7 +36,7 @@
           outcome: invoice.invoiceType === 1
         }"
       >
-        {{ invoice.name }}
+        {{ invoice.name | cutText: 12 }}
       </div>
     </div>
     <div class="column2">
@@ -44,11 +67,13 @@
     </div>
   </a>
   <mat-paginator
-    [length]="100"
+    [length]="invoicesCount"
     [pageSize]="4"
     aria-label="Select page"
     (page)="getTransactions($event)"
   >
   </mat-paginator>
 </div>
-<!-- [pageSizeOptions]="[5, 10, 25, 100]" -->
+<div *ngIf="!isLoaded" class="transaction-table">
+  <app-loader></app-loader>
+</div>

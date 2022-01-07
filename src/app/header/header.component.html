@@ -24,6 +24,7 @@
       <div class="greetings">
         <div *ngIf="name" class="welcome">Hi, {{ name }}!</div>
         <div *ngIf="email" class="user-email">{{ email }}</div>
+        <button *ngIf="email" class="logout" (click)="logout()">logout</button>
         <div *ngIf="!email" class="welcome">
           <a routerLink="/login">Login</a>
         </div>

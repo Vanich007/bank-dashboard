@@ -16,24 +16,16 @@
   "invoices": [
     {
       "id": 1,
-      "amount": "1",
+      "amount": "28",
       "date": "2034-01-31T21:00:00.000Z",
       "name": "Dr Nice payment",
       "period": 3,
       "invoiceType": 1
     },
     {
-      "id": 4,
-      "amount": "2001",
-      "date": "2018-08-17T21:00:00.000Z",
-      "name": "salary23",
-      "invoiceType": 0,
-      "period": 3
-    },
-    {
       "amount": "200",
       "date": "2018-08-17T21:00:00.000Z",
-      "name": "s",
+      "name": "Parents help",
       "invoiceType": 0,
       "period": 1,
       "id": 13
@@ -47,52 +39,52 @@
       "id": 14
     },
     {
-      "name": "1",
-      "amount": "202",
-      "invoiceType": 0,
-      "period": 2,
-      "date": "2022-07-06T21:00:00.000Z",
-      "id": 15
-    },
-    {
-      "name": "2",
-      "amount": "202",
-      "invoiceType": 0,
+      "name": "Psychologist help",
+      "amount": "30",
+      "invoiceType": 1,
       "period": 2,
       "date": "2022-07-06T21:00:00.000Z",
       "id": 16
     },
     {
-      "name": "3",
-      "amount": "202",
-      "invoiceType": 0,
+      "name": "home renovation",
+      "amount": "50",
+      "invoiceType": 1,
       "period": 2,
       "date": "2022-07-06T21:00:00.000Z",
       "id": 17
     },
     {
-      "name": "4",
-      "amount": "202",
-      "invoiceType": 0,
+      "name": "to John",
+      "amount": "20",
+      "invoiceType": 1,
       "period": 2,
       "date": "2022-07-06T21:00:00.000Z",
       "id": 18
     },
     {
-      "name": "5",
-      "amount": "202",
+      "name": "Freelance inc",
+      "amount": "200",
       "invoiceType": 0,
       "period": 2,
       "date": "2022-07-06T21:00:00.000Z",
       "id": 19
     },
     {
-      "name": "6",
+      "name": "Car rent paiment",
       "amount": "202",
       "invoiceType": 0,
       "period": 2,
       "date": "2022-07-06T21:00:00.000Z",
       "id": 20
+    },
+    {
+      "name": "Government salary",
+      "amount": "109",
+      "invoiceType": 0,
+      "period": 3,
+      "date": "2018-08-17T21:00:00.000Z",
+      "id": 21
     }
   ]
 }

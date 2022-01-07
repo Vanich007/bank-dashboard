@@ -1,3 +1,6 @@
+import { LoaderComponent } from './../../shared/loaders/loader/loader.component';
+import { CutArrayPipe } from './../../shared/pipes/arrayPipe';
+import { CutTextPipe } from './../../shared/pipes/myPipe';
 import { MaterialModule } from './../../shared/modules/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
@@ -13,6 +16,9 @@ import {
   DlDateTimeDateModule,
   DlDateTimePickerModule,
 } from 'angular-bootstrap-datetimepicker';
+import { ChartComponent } from './chart/chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +26,11 @@ import {
     InvoiceBlocksComponent,
     SummaryComponent,
     InvoiceDetailComponent,
+    CutTextPipe,
+    CutArrayPipe,
+    LoaderComponent,
+    ChartComponent,
+    PieChartComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +39,9 @@ import {
     DlDateTimePickerModule,
     ReactiveFormsModule,
     MaterialModule,
+    NgxChartsModule,
   ],
+  exports: [NgxChartsModule],
 
   providers: [InvoiceService],
 })
