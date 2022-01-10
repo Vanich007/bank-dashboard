@@ -19,6 +19,17 @@
         <mat-option [value]="1">outcoming</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <button
+      type="button"
+      mat-fab
+      color="secondary"
+      (click)="openDialog()"
+      aria-label="Add"
+      matTooltip="Set filter"
+    >
+      <mat-icon> filter_alt </mat-icon>
+    </button>
   </div>
 
   <div
@@ -41,11 +52,9 @@
     </div>
     <div class="column2">
       <div class="amount">$ {{ invoice.amount }}</div>
-      <div [ngSwitch]="invoice.period">
-        <p *ngSwitchCase="0">daily</p>
-        <p *ngSwitchCase="1">weekly</p>
-        <p *ngSwitchCase="2">monthly</p>
-        <p *ngSwitchCase="3">annually</p>
+
+      <div>
+        <p>{{ invoicePeriod[invoice.period].text }}</p>
       </div>
     </div>
 

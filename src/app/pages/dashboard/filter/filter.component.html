@@ -1,0 +1,91 @@
+<mat-card>
+  <mat-card-title>Set filter</mat-card-title>
+  <mat-label>Выберите тип транзакций</mat-label>
+  <section class="checkbox-horizontal">
+    <ul>
+      <li *ngFor="let t of data.invoiceTypes">
+        <mat-checkbox
+          #checkbox
+          value="{{ t.type }}"
+          (change)="toggleInvoiceTypes(checkbox)"
+          >{{ t.text }}</mat-checkbox
+        >
+      </li>
+    </ul>
+  </section>
+  <mat-label>Выберите период</mat-label>
+  <section class="checkbox-horizontal">
+    <ul>
+      <li *ngFor="let p of data.invoicePeriod">
+        <mat-checkbox
+          #checkbox
+          value="{{ p.type }}"
+          (change)="toggleInvoicePeriod(checkbox)"
+          >{{ p.text }}</mat-checkbox
+        >
+      </li>
+    </ul>
+  </section>
+
+  <!-- <mat-radio-group
+      aria-label="Select an option"
+      formControlName="invoiceType"
+    > -->
+  <!-- <mat-radio-button
+        *ngFor="let invoiceTypeItem of invoiceTypes"
+        [value]="invoiceTypeItem.type"
+      >
+        {{ invoiceTypeItem.text }}</mat-radio-button
+      >
+    </mat-radio-group> -->
+
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Select Invoice period</mat-label>
+    <mat-select formControlName="period">
+      <mat-option [value]="0">daily</mat-option>
+      <mat-option [value]="1">weekly</mat-option>
+      <mat-option [value]="2">monthly</mat-option>
+      <mat-option [value]="3">annually</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" class="form-control" />
+    <mat-hint>Invoice name required!</mat-hint>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Amount</mat-label>
+    <input matInput type="text" class="form-control" />
+    <mat-hint>Please enter a valid number</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field> -->
+  <div class="buttons-panel">
+    <button
+      mat-fab
+      [mat-dialog-close]="{invoiceTypes,invoicePeriod}"
+      cdkFocusInitial
+      color="primary"
+      matTooltip="Apply filter"
+    >
+      <mat-icon>done</mat-icon>
+    </button>
+
+    <button
+      type="button"
+      mat-fab
+      color="secondary"
+      (click)="onNoClick()"
+      aria-label="Add"
+      matTooltip="Close filter form"
+    >
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+</mat-card>

@@ -1,3 +1,5 @@
+import { FilterComponent } from './../filter/filter.component';
+import { MatDialog } from '@angular/material/dialog';
 import { InvoiceType } from './../../../types';
 import { InvoiceService } from './../invoice.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -11,6 +13,26 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./invoices.component.scss'],
 })
 export class InvoicesComponent implements OnInit, OnDestroy {
+  invoiceTypes = [
+    {
+      type: 0,
+      text: 'incoming',
+    },
+    { type: 1, text: 'outcoming' },
+  ];
+  invoicePeriod = [
+    {
+      type: 0,
+      text: 'daily',
+    },
+    { type: 1, text: 'weekly' },
+    {
+      type: 2,
+      text: 'mounthly',
+    },
+    { type: 3, text: 'annually' },
+  ];
+
   invoicesCount: number = 5;
   incoming: any[] = [];
   outcoming: any[] = [];
@@ -34,7 +56,27 @@ export class InvoicesComponent implements OnInit, OnDestroy {
     return event;
   }
 
-  constructor(private invoicesService: InvoiceService) {}
+  constructor(
+    private invoicesService: InvoiceService,
+    public dialog: MatDialog
+  ) {}
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(FilterComponent, {
+      width: '450px',
+      data: {
+        invoicePeriod: this.invoicePeriod,
+        invoiceTypes: this.invoiceTypes,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((conditions) => {
+      console.log('The dialog was closed', conditions);
+      this.invoicesService.setConditions(conditions);
+      this.invoicesService.getInvoicesPart(0, 4);
+    });
+  }
+
   getTransactions(event: PageEvent) {
     // this.invoicesService.getInvoices().subscribe((t) => {
     //   this.invoices = t;    });

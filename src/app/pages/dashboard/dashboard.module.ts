@@ -19,6 +19,7 @@ import {
 import { ChartComponent } from './chart/chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
     LoaderComponent,
     ChartComponent,
     PieChartComponent,
+    FilterComponent,
   ],
   imports: [
     CommonModule,

@@ -12,9 +12,31 @@ export class InvoiceService extends BaseApi {
   invoicesChange = new Subject<InvoiceType[]>();
   invoiceUrl = 'invoices';
   fetchOptionsSubject: any;
-
+  conditions: string = '';
+  searchConditions: string = '';
   constructor(public override http: HttpClient) {
     super(http);
+  }
+
+  setSearchConditions(value: string) {
+    this.searchConditions = `&q=${value}`;
+  }
+
+  setConditions(conditions: any): void {
+    let strConditions = '';
+    if (conditions.invoiceTypes)
+      for (let s = 0; s < conditions.invoiceTypes.length; s++) {
+        strConditions =
+          strConditions + `&invoiceType=${conditions.invoiceTypes[s]}`;
+      }
+
+    if (conditions.invoicePeriod)
+      for (let s = 0; s < conditions.invoicePeriod.length; s++) {
+        strConditions =
+          strConditions + `&period=${conditions.invoicePeriod[s]}`;
+      }
+    console.log(strConditions);
+    this.conditions = strConditions;
   }
 
   getInvoices(): Observable<any> {
@@ -26,12 +48,12 @@ export class InvoiceService extends BaseApi {
   }
 
   getInvoicesPart(start: number = 0, limit: number = 10): void {
-    this.get(`${this.invoiceUrl}?_start=${start}&_limit=${limit}`).subscribe(
-      (i) => {
-        this.invoices = [...i];
-        this.invoicesChange.next(this.invoices);
-      }
-    );
+    this.get(
+      `${this.invoiceUrl}?_start=${start}&_limit=${limit}${this.conditions}${this.searchConditions}`
+    ).subscribe((i) => {
+      this.invoices = [...i];
+      this.invoicesChange.next(this.invoices);
+    });
   }
 
   getInvoice(id: number): Observable<InvoiceType> {

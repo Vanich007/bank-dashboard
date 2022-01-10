@@ -34,7 +34,8 @@ export class HeaderComponent implements OnInit {
     }
   }
   onSearch(value: string) {
-    this.invoiceService.searchInvoices(value);
+    this.invoiceService.setSearchConditions(value);
+    this.invoiceService.getInvoicesPart(0, 4);
   }
   logout() {
     this.authService.logout();
