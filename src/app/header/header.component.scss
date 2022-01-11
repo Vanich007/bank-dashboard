@@ -25,7 +25,7 @@ header {
     // margin-left: 122px;
     padding-right: 20px;
     padding-left: 30px;
-    width: calc(100% / 4);
+    width: 25%;
     height: 60px;
     border: 1px #ffffff solid; //цвет рамки
     border-radius: 15px;
@@ -47,7 +47,7 @@ header {
       background: #ffffff !important; // же
       color: #72757a;
       margin-top: 20px;
-      width: 90%;
+      width: calc(100% - 30px);
     }
   }
   .notifications-block {
@@ -118,5 +118,33 @@ header {
       line-height: 18px;
       color: #72757a;
     }
+  }
+}
+@media screen and (max-width: 844px) {
+  header {
+    flex-direction: column;
+    padding: 10px;
+
+    .dash {
+      padding-left: 30px;
+    }
+    .notifications-block {
+      width: 100%;
+    }
+    .notifications {
+      margin-left: 0px;
+    }
+    .search-box {
+      margin: 5px;
+      width: calc(100% - 60px);
+    }
+    .user {
+      margin-left: 10px;
+    }
+  }
+}
+@media screen and (max-width: 1600px) {
+  .dash {
+    display: none;
   }
 }

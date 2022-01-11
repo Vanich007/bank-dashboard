@@ -3,11 +3,25 @@
   flex-direction: row;
   align-items: flex-start;
   background-color: #e5e5e5;
+  min-width: 500px;
+  width: 100%;
+  overflow: hidden;
+  padding: 10px;
 }
 .workzone-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 100%;
+  width: calc(100% - 60px);
+  padding: 10px;
+}
+@media screen and (max-width: 1344px) {
+  .layout {
+    flex-direction: column-reverse;
+  }
+  .workzone-wrapper {
+    width: 100%;
+    padding: 10px 0;
+  }
 }

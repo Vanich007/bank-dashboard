@@ -2,7 +2,7 @@ import { UserService } from './../pages/users/user.service';
 import { UsersPageModule } from './../pages/users/login.module';
 import { AuthService } from './../shared/services/auth.service';
 import { InvoiceService } from './../pages/dashboard/invoice.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Output() onChangeSearchWord = new EventEmitter();
   email: string = '';
   name: string = '';
 
@@ -36,6 +37,7 @@ export class HeaderComponent implements OnInit {
   onSearch(value: string) {
     this.invoiceService.setSearchConditions(value);
     this.invoiceService.getInvoicesPart(0, 4);
+    this.onChangeSearchWord.emit('');
   }
   logout() {
     this.authService.logout();

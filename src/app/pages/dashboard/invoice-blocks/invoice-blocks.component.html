@@ -2,30 +2,29 @@
   <div class="blocks-container">
     <div class="block">
       <div class="amount">
-        <img src="../../assets/totalwhite.png" />{{ statistics?.totalInvoices }}
+        <img src="../../assets/totalwhite.png" />{{ mounthlyDifference }}$
       </div>
-      <span>Total Invoices</span>
+      <span>Mounthly profit</span>
       <div class="circle-after"></div>
     </div>
 
     <div class="block paid-invoices">
       <div class="amount">
-        <img src="../../../../assets/paidinvoices.png" />{{
-          statistics?.paidInvoices
-        }}
+        <img src="../../../../assets/paidinvoices.png" />{{ incomeInvoices }}$
       </div>
-      <span>Paid Invoices</span>
+      <span>Incoming Invoices</span>
       <div class="circle-after"></div>
     </div>
 
     <div class="block unpaid-invoices">
       <div class="amount">
-        <img src="../../../../assets/unpaid.png" />{{ statistics?.unpaidInvoices }}
+        <img src="../../../../assets/unpaid.png" />{{ outcomeInvoices }}$
       </div>
-      <span>Total Invoices</span>
+      <span>Outcoming Invoices</span>
       <div class="circle-after"></div>
     </div>
-    <div class="block total-invoices-sent">
+
+    <!-- <div class="block total-invoices-sent">
       <div class="amount">
         <img src="../../../../assets/totalinvoicessent.png" />{{
           statistics?.totalInvoicesSent
@@ -33,6 +32,6 @@
       </div>
       <span>Total Invoices Sent</span>
       <div class="circle-after"></div>
-    </div>
+    </div> -->
   </div>
 </div>

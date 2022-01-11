@@ -1,6 +1,7 @@
+import { InvoiceType } from './../../../types';
 import { invoicesStatisticsType } from '../../../types';
-import { StatisticsService } from './../statistics.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,18 +10,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./invoice-blocks.component.scss'],
 })
 export class InvoiceBlocksComponent implements OnInit, OnDestroy {
-  sub?: Subscription;
-  statistics?: invoicesStatisticsType;
-  constructor(private statisticsService: StatisticsService) {}
-  getStatistics() {
-    this.sub = this.statisticsService.getStatistics().subscribe((t) => {
-      this.statistics = t;
-    });
-  }
-  ngOnInit(): void {
-    this.getStatistics();
-  }
-  ngOnDestroy() {
-    this.sub?.unsubscribe();
-  }
+  @Input() mounthlyDifference: number = 0;
+  @Input() incomeInvoices: number = 0;
+  @Input() outcomeInvoices: number = 0;
+  constructor() {}
+
+  ngOnInit(): void {}
+  ngOnDestroy() {}
 }

@@ -10,7 +10,7 @@ export class PieChartComponent implements OnInit {
   public legendPosition: LegendPosition = LegendPosition.Below;
   @Input() type: string = '';
   @Input() data: any[] = [];
-  view: [number, number] = [700, 400];
+  view: [number, number] = [500, 400];
 
   // options
   gradient: boolean = true;

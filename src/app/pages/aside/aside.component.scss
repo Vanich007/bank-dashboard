@@ -1,13 +1,17 @@
 :host {
   height: 100vh;
+  width: 344px;
 }
 .aside {
   display: flex;
   flex-direction: column;
-  width: 344px;
+  width: 100%;
   background: #ffffff;
   box-shadow: 10px 4px 25px rgba(230, 230, 230, 0.25);
   height: 100%;
+  padding-bottom: 30px;
+  border-radius: 20px;
+  padding: 10px;
 }
 .logo {
   margin-top: 40px;
@@ -36,6 +40,9 @@
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
+  &:hover {
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);
+  }
 
   a {
     text-decoration: none;
@@ -84,5 +91,11 @@
       left: -20px;
       top: 4px;
     }
+  }
+}
+@media screen and (max-width: 1344px) {
+  :host {
+    width: 100%;
+    height: 100%;
   }
 }

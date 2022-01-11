@@ -2,7 +2,9 @@
 // @import "~bootstrap/dist/css/bootstrap.min.css";
 // @import "~open-iconic/font/css/open-iconic-bootstrap.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
+* {
+  box-sizing: border-box;
+}
 html,
 body {
   height: 100%;

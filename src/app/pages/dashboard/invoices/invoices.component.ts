@@ -32,7 +32,8 @@ export class InvoicesComponent implements OnInit, OnDestroy {
     },
     { type: 3, text: 'annually' },
   ];
-
+  mounthlyIncome = 0;
+  mounthlyOutcome = 0;
   invoicesCount: number = 5;
   incoming: any[] = [];
   outcoming: any[] = [];
@@ -71,9 +72,11 @@ export class InvoicesComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((conditions) => {
-      console.log('The dialog was closed', conditions);
       this.invoicesService.setConditions(conditions);
       this.invoicesService.getInvoicesPart(0, 4);
+      this.allInvoices = this.invoicesService.getInvoices().subscribe((i) => {
+        this.invoicesCount = i.length;
+      });
     });
   }
 
@@ -89,17 +92,62 @@ export class InvoicesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.allInvoices = this.invoicesService.getInvoices().subscribe((i) => {
       this.invoicesCount = i.length;
+      console.log('invoicesCount changed');
 
+      this.mounthlyIncome = 0;
       this.incoming = i
         .filter((item: InvoiceType) => item.invoiceType === 0)
         .map((item: InvoiceType) => {
-          return { value: item.amount, name: item.name, id: item.id };
+          let coefficient;
+          switch (item.period) {
+            case 0:
+              coefficient = 365;
+              break;
+            case 1:
+              coefficient = 56;
+              break;
+            case 2:
+              coefficient = 12;
+              break;
+
+            default:
+              coefficient = 1;
+              break;
+          }
+          this.mounthlyIncome += Math.round((item.amount * coefficient) / 12);
+          return {
+            value: item.amount * coefficient,
+            name: item.name,
+            id: item.id,
+          };
         });
 
+      this.mounthlyOutcome = 0;
       this.outcoming = i
         .filter((item: InvoiceType) => item.invoiceType === 1)
         .map((item: InvoiceType) => {
-          return { value: item.amount, name: item.name };
+          let coefficient;
+          switch (item.period) {
+            case 0:
+              coefficient = 365;
+              break;
+            case 1:
+              coefficient = 56;
+              break;
+            case 2:
+              coefficient = 12;
+              break;
+
+            default:
+              coefficient = 1;
+              break;
+          }
+          this.mounthlyOutcome += Math.round((item.amount * coefficient) / 12);
+          return {
+            value: item.amount * coefficient,
+            name: item.name,
+            id: item.id,
+          };
         });
     });
     // this.outcoming = i.filter((item) => item.invoiceType === 1);

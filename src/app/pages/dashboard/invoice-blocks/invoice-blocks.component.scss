@@ -4,10 +4,9 @@
 .wrapper {
   position: relative;
   font-family: "DM Sans", sans-serif;
-  margin: 20px;
   border-radius: 20px;
   background-color: transparent;
-  padding: 40px;
+  // padding: 40px;
   overflow: hidden;
 }
 .blocks-container {
@@ -15,11 +14,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 .block {
   position: relative;
 
-  width: 23%;
+  width: 30%;
   height: 149px;
   overflow: hidden;
   background: #03b664;
@@ -49,6 +49,26 @@
       left: 61px;
       top: 48px;
     }
+    @media screen and (max-width: 1344px) and (min-width: 844px) {
+      line-height: 59px;
+      padding-left: 30%;
+      &::before {
+        content: " ";
+        position: absolute;
+        left: calc(10% - 12px);
+        top: 37px;
+        width: 45px;
+        height: 45px;
+        background: #ffffff;
+        opacity: 0.2;
+        border-radius: 10px;
+      }
+      img {
+        position: absolute;
+        left: 10%;
+        top: 48px;
+      }
+    }
   }
   &::after {
   }
@@ -63,6 +83,10 @@
     line-height: 21px;
 
     color: #ffffff;
+    @media screen and (max-width: 1344px) and (min-width: 844px) {
+      padding-top: 80px;
+      padding-left: 35px;
+    }
   }
 }
 .circle-after {
@@ -84,4 +108,14 @@
 }
 .total-invoices-sent {
   background: #ff684d;
+}
+@media screen and (max-width: 844px) {
+  .blocks-container {
+    flex-direction: column;
+  }
+  .block {
+    padding: 5px 10%;
+    margin-top: 5px;
+    width: 80%;
+  }
 }

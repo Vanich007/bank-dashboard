@@ -1,8 +1,16 @@
+<app-invoice-blocks
+  [incomeInvoices]="mounthlyIncome"
+  [outcomeInvoices]="mounthlyOutcome"
+  [mounthlyDifference]="mounthlyIncome - mounthlyOutcome"
+></app-invoice-blocks>
 <div class="charts">
-  <app-pie-chart [data]="incoming" [type]="'Incoming invoices'"></app-pie-chart>
+  <app-pie-chart
+    [data]="incoming"
+    [type]="'Incoming invoices: ' + mounthlyIncome + '$ mounthly'"
+  ></app-pie-chart>
   <app-pie-chart
     [data]="outcoming"
-    [type]="'Outcoming invoices'"
+    [type]="'Outcoming invoices: ' + mounthlyOutcome + '$ mounthly'"
   ></app-pie-chart>
 </div>
 <div *ngIf="isLoaded" class="transaction-table">
@@ -26,7 +34,7 @@
       color="secondary"
       (click)="openDialog()"
       aria-label="Add"
-      matTooltip="Set filter"
+      matTooltip="Filter this page"
     >
       <mat-icon> filter_alt </mat-icon>
     </button>

@@ -1,12 +1,14 @@
 <h2>{{ type }}</h2>
-<ngx-charts-pie-chart
-  [view]="view"
-  [results]="data"
-  [gradient]="gradient"
-  [legend]="showLegend"
-  [legendPosition]="legendPosition"
-  [labels]="showLabels"
-  [doughnut]="isDoughnut"
-  (select)="onSelect($event)"
->
-</ngx-charts-pie-chart>
+<div class="center">
+  <ngx-charts-pie-chart
+    [view]="view"
+    [results]="data"
+    [gradient]="gradient"
+    [legend]="showLegend"
+    [legendPosition]="legendPosition"
+    [labels]="showLabels"
+    [doughnut]="isDoughnut"
+    (select)="onSelect($event)"
+  >
+  </ngx-charts-pie-chart>
+</div>

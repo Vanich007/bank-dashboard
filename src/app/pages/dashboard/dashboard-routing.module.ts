@@ -1,5 +1,5 @@
+import { InvoicesComponent } from './invoices/invoices.component';
 import { AuthGuard } from './../../shared/guards/auth.guard';
-import { SummaryComponent } from '../../summary/summary.component';
 import { InvoiceDetailComponent } from '../../pages/dashboard/invoice-detail/invoice-detail.component';
 import { SiteLayoutComponent } from '../../shared/layouts/site-layout/site-layout.component';
 import { NgModule } from '@angular/core';
@@ -12,7 +12,7 @@ const dashboardRoutes: Routes = [
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
     children: [
-      { path: '', component: SummaryComponent },
+      { path: '', component: InvoicesComponent },
       { path: 'detail/:id', component: InvoiceDetailComponent },
     ],
   },

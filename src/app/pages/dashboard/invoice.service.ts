@@ -19,6 +19,7 @@ export class InvoiceService extends BaseApi {
   }
 
   setSearchConditions(value: string) {
+    debugger;
     this.searchConditions = `&q=${value}`;
   }
 
@@ -40,7 +41,11 @@ export class InvoiceService extends BaseApi {
   }
 
   getInvoices(): Observable<any> {
-    return this.get(this.invoiceUrl);
+    return this.get(
+      `${this.invoiceUrl}${this.conditions.replace('&', '?')}${
+        this.searchConditions
+      }`
+    );
     //  .subscribe((i) => {
     //     this.invoices = [...i];
     //     this.invoicesChange.next(this.invoices);
