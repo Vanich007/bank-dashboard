@@ -33,3 +33,7 @@ export type UserType = {
   password: string;
   name: string;
 };
+export type InvoiceDir = {
+  type: number;
+  text: string;
+};

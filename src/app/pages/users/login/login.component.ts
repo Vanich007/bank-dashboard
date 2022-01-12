@@ -32,20 +32,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.UserService.login(
-      this.form.value.email,
-      this.form.value.password
-    ).subscribe((user: UserType) => {
-      if (user) {
-        if (user.password === this.form.value.password) {
-          this.authService.login();
-          window.localStorage.setItem('user', JSON.stringify(user));
-          this.router.navigate(['/dashboard']);
-        } else {
-          this.openSnackBar('Неверный пароль', 'Попробовать еще');
-        }
-      } else this.openSnackBar('Пользователь не зарегистрирован', 'OK');
-    });
+    this.UserService.login(this.form.value.email).subscribe(
+      (user: UserType) => {
+        if (user) {
+          if (user.password === this.form.value.password) {
+            this.authService.login();
+            window.localStorage.setItem('user', JSON.stringify(user));
+            this.router.navigate(['/dashboard']);
+          } else {
+            this.openSnackBar('Неверный пароль', 'Попробовать еще');
+          }
+        } else this.openSnackBar('Пользователь не зарегистрирован', 'OK');
+      }
+    );
   }
 
   ngOnInit(): void {

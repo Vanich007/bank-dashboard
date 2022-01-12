@@ -20,12 +20,10 @@ export class AuthLayoutComponent implements OnInit {
     const user = window.localStorage.getItem('user');
     if (user) {
       const userObj = JSON.parse(user);
-      this.userService
-        .login(userObj.email, userObj.password)
-        .subscribe((user: UserType) => {
-          this.authService.login();
-          this.router.navigate(['/dashboard']);
-        });
+      this.userService.login(userObj.email).subscribe((user: UserType) => {
+        this.authService.login();
+        this.router.navigate(['/dashboard']);
+      });
     }
   }
 }

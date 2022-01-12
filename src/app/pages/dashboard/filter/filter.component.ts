@@ -1,4 +1,4 @@
-import { InvoiceType } from './../../../types';
+import { InvoiceType, InvoiceDir } from './../../../types';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -14,10 +14,12 @@ export interface DialogData {
   styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent implements OnInit {
-  invoiceTypes: any[] = [];
-  invoicePeriod: any[] = [];
+  invoiceTypes: InvoiceDir[] = [];
+  invoicePeriod: InvoiceDir[] = [];
+  selectedInvoiceTypes: number[] = [];
+  selectedInvoicePeriod: number[] = [];
   ngOnInit(): void {
-    console.log(this.data);
+    this.data;
   }
   constructor(
     public dialogRef: MatDialogRef<FilterComponent>,
@@ -28,23 +30,25 @@ export class FilterComponent implements OnInit {
     this.dialogRef.close();
   }
   toggleInvoiceTypes(checkbox: MatCheckbox) {
-    let { checked, value } = checkbox;
-    console.log(checked, value);
+    let { checked, value }: { checked: boolean; value: string } = checkbox;
     if (checked === false)
-      this.invoiceTypes = this.invoiceTypes.filter((i) => i.type !== +value);
+      this.selectedInvoiceTypes = this.selectedInvoiceTypes.filter(
+        (i) => i !== +value
+      );
     else
-      this.invoiceTypes.indexOf(+value) === -1
-        ? this.invoiceTypes.push(+value)
+      this.selectedInvoiceTypes.indexOf(+value) === -1
+        ? this.selectedInvoiceTypes.push(+value)
         : null;
   }
   toggleInvoicePeriod(checkbox: MatCheckbox) {
     let { checked, value } = checkbox;
-    console.log(checked, value);
     if (checked === false)
-      this.invoicePeriod = this.invoicePeriod.filter((i) => i.type !== +value);
+      this.selectedInvoicePeriod = this.selectedInvoicePeriod.filter(
+        (i) => i !== +value
+      );
     else
-      this.invoicePeriod.indexOf(+value) === -1
-        ? this.invoicePeriod.push(+value)
+      this.selectedInvoicePeriod.indexOf(+value) === -1
+        ? this.selectedInvoicePeriod.push(+value)
         : null;
   }
 }

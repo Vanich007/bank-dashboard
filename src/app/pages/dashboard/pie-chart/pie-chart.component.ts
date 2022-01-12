@@ -1,3 +1,4 @@
+import { StatisticType } from './../invoices/invoices.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { LegendPosition } from '@swimlane/ngx-charts';
 
@@ -9,7 +10,7 @@ import { LegendPosition } from '@swimlane/ngx-charts';
 export class PieChartComponent implements OnInit {
   public legendPosition: LegendPosition = LegendPosition.Below;
   @Input() type: string = '';
-  @Input() data: any[] = [];
+  @Input() data: StatisticType[] = [];
   view: [number, number] = [500, 400];
 
   // options
@@ -25,8 +26,8 @@ export class PieChartComponent implements OnInit {
 
   constructor() {}
 
-  onSelect(data: any): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+  onSelect(data: StatisticType): void {
+    console.log('Selected ', data.name, data.value);
   }
   ngOnInit(): void {}
 }

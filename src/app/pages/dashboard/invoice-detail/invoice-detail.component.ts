@@ -6,6 +6,15 @@ import { Location } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
+export type InvoiceCopyType = {
+  id?: number;
+  date: Date;
+  amount: number;
+  name: string;
+  invoiceType: number;
+  period: number;
+};
+
 @Component({
   selector: 'app-invoice-detail',
   templateUrl: './invoice-detail.component.html',
@@ -84,7 +93,7 @@ export class InvoiceDetailComponent implements OnInit, OnDestroy {
     } else this.cloneInvoice();
   }
   cloneInvoice(): void {
-    let tempInvoice = { ...this.form.value } as any;
+    let tempInvoice = { ...this.form.value } as InvoiceCopyType;
     delete tempInvoice.id;
     this.sub = this.invoiceService
       .addInvoice(tempInvoice)

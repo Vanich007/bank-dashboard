@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     const user = window.localStorage.getItem('user');
     if (user) {
       const userObj = JSON.parse(user);
-      this.userService.login(userObj.email, userObj.password);
+      this.userService.login(userObj.email);
 
       if (this.authService.isLoggedIn()) {
         if (user) {

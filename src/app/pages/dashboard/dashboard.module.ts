@@ -18,7 +18,6 @@ import {
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { FilterComponent } from './filter/filter.component';
-import { PrognoseComponent } from './prognose/prognose.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,6 @@ import { PrognoseComponent } from './prognose/prognose.component';
 
     PieChartComponent,
     FilterComponent,
-    PrognoseComponent,
   ],
   imports: [
     CommonModule,

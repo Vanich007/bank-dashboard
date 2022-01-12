@@ -1,7 +1,9 @@
-<div class="layout">
-  <app-aside> </app-aside>
-  <div class="workzone-wrapper">
-    <app-header (onChangeSearchWord)="onChangeSearchWord()"></app-header>
-    <router-outlet></router-outlet>
+<div class="wrapper">
+  <div class="layout">
+    <app-aside> </app-aside>
+    <div class="workzone-wrapper">
+      <app-header (onChangeSearchWord)="onChangeSearchWord()"></app-header>
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

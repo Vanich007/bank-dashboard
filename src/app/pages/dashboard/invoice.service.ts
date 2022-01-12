@@ -1,8 +1,14 @@
+import { InvoiceCopyType } from './invoice-detail/invoice-detail.component';
 import { BaseApi } from './../../core/base-api';
 import { InvoiceType } from './../../types';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+
+type setCondishionsType = {
+  selectedInvoiceTypes: Array<number>;
+  selectedInvoicePeriod: Array<number>;
+};
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +17,6 @@ export class InvoiceService extends BaseApi {
   private invoices?: InvoiceType[];
   invoicesChange = new Subject<InvoiceType[]>();
   invoiceUrl = 'invoices';
-  fetchOptionsSubject: any;
   conditions: string = '';
   searchConditions: string = '';
   constructor(public override http: HttpClient) {
@@ -23,24 +28,23 @@ export class InvoiceService extends BaseApi {
     this.searchConditions = `&q=${value}`;
   }
 
-  setConditions(conditions: any): void {
+  setConditions(conditions: setCondishionsType): void {
     let strConditions = '';
-    if (conditions.invoiceTypes)
-      for (let s = 0; s < conditions.invoiceTypes.length; s++) {
+    if (conditions.selectedInvoiceTypes)
+      for (let s = 0; s < conditions.selectedInvoiceTypes.length; s++) {
         strConditions =
-          strConditions + `&invoiceType=${conditions.invoiceTypes[s]}`;
+          strConditions + `&invoiceType=${conditions.selectedInvoiceTypes[s]}`;
       }
 
-    if (conditions.invoicePeriod)
-      for (let s = 0; s < conditions.invoicePeriod.length; s++) {
+    if (conditions.selectedInvoicePeriod)
+      for (let s = 0; s < conditions.selectedInvoicePeriod.length; s++) {
         strConditions =
-          strConditions + `&period=${conditions.invoicePeriod[s]}`;
+          strConditions + `&period=${conditions.selectedInvoicePeriod[s]}`;
       }
-    console.log(strConditions);
     this.conditions = strConditions;
   }
 
-  getInvoices(): Observable<any> {
+  getInvoices(): Observable<Array<InvoiceType>> {
     return this.get(
       `${this.invoiceUrl}${this.conditions.replace('&', '?')}${
         this.searchConditions
@@ -76,7 +80,7 @@ export class InvoiceService extends BaseApi {
     });
   }
 
-  addInvoice(invoice: InvoiceType): Observable<InvoiceType> {
+  addInvoice(invoice: InvoiceCopyType): Observable<InvoiceType> {
     return this.post(this.invoiceUrl, invoice);
   }
 
@@ -85,7 +89,7 @@ export class InvoiceService extends BaseApi {
     return this.delete(url);
   }
 
-  updateInvoice(invoice: InvoiceType): Observable<any> {
+  updateInvoice(invoice: InvoiceCopyType): Observable<InvoiceType> {
     return this.patch(`${this.invoiceUrl}/${invoice.id}`, invoice);
   }
 }

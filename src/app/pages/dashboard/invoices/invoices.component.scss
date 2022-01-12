@@ -4,7 +4,8 @@
 .charts {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding-top: 5px;
 }
 .transaction-table {
   position: relative;
@@ -173,5 +174,11 @@
   }
   .transaction-table {
     margin: 0;
+  }
+}
+@media screen and (max-width: 1344px) and (min-width: 1001px) {
+  .charts {
+    flex-direction: row;
+    width: 100%;
   }
 }

@@ -97,9 +97,8 @@ export class DatePickerInputComponent implements AfterViewInit {
    * @param event
    *  the `DlDateTimePickerChange` event.
    */
-//@ts-ignore
+  //@ts-ignore
   dateSelected(event) {
-    console.log('_isDropdownVisible', this._isPickerOpen);
     if (this._isPickerOpen && event.value) {
       $('.date-dropdown').dropdown('toggle');
     }

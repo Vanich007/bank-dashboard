@@ -1,11 +1,17 @@
 import { FilterComponent } from './../filter/filter.component';
 import { MatDialog } from '@angular/material/dialog';
-import { InvoiceType } from './../../../types';
+import { InvoiceType, InvoiceDir } from './../../../types';
 import { InvoiceService } from './../invoice.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSelectChange } from '@angular/material/select';
 import { Subscription } from 'rxjs';
+
+export type StatisticType = {
+  value: number;
+  name: string;
+  id: number;
+};
 
 @Component({
   selector: 'app-invoices',
@@ -13,14 +19,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./invoices.component.scss'],
 })
 export class InvoicesComponent implements OnInit, OnDestroy {
-  invoiceTypes = [
+  invoiceTypes: InvoiceDir[] = [
     {
       type: 0,
       text: 'incoming',
     },
     { type: 1, text: 'outcoming' },
   ];
-  invoicePeriod = [
+  invoicePeriod: InvoiceDir[] = [
     {
       type: 0,
       text: 'daily',
@@ -35,8 +41,8 @@ export class InvoicesComponent implements OnInit, OnDestroy {
   mounthlyIncome = 0;
   mounthlyOutcome = 0;
   invoicesCount: number = 5;
-  incoming: any[] = [];
-  outcoming: any[] = [];
+  incoming: StatisticType[] = [];
+  outcoming: StatisticType[] = [];
   sub?: Subscription;
   allInvoices?: Subscription;
   typeFilter = 2;
@@ -92,7 +98,6 @@ export class InvoicesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.allInvoices = this.invoicesService.getInvoices().subscribe((i) => {
       this.invoicesCount = i.length;
-      console.log('invoicesCount changed');
 
       this.mounthlyIncome = 0;
       this.incoming = i
