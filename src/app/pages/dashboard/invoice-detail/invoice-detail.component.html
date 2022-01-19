@@ -22,20 +22,25 @@
         formControlName="invoiceType"
       >
         <mat-radio-button
-          *ngFor="let invoiceTypeItem of invoiceTypes"
-          [value]="invoiceTypeItem.type"
+          *ngFor="let invoiceTypeItem of thisInvoiceEnumType | keyvalue"
+          [value]="invoiceTypeItem.value"
         >
-          {{ invoiceTypeItem.text }}</mat-radio-button
+          {{ invoiceTypeItem.value }}</mat-radio-button
         >
       </mat-radio-group>
       <div class="double">
         <mat-form-field appearance="fill">
           <mat-label>Select Invoice period</mat-label>
           <mat-select formControlName="period">
-            <mat-option [value]="0">daily</mat-option>
-            <mat-option [value]="1">weekly</mat-option>
+            <!-- <mat-option [value]="thisInvoiceEnumPeriod">daily</mat-option>
+            <mat-option [value]="weekly">weekly</mat-option>
             <mat-option [value]="2">monthly</mat-option>
-            <mat-option [value]="3">annually</mat-option>
+            <mat-option [value]="3">annually</mat-option> -->
+            <mat-option
+              *ngFor="let option of thisInvoiceEnumPeriod | keyvalue"
+              [value]="option.value"
+              >{{ option.value }}</mat-option
+            >
           </mat-select>
         </mat-form-field>
 

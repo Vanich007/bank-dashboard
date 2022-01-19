@@ -1,5 +1,7 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ActivatedRoute } from '@angular/router';
+import { dashboardRoutes } from '../dashboard-routing.module';
 import { InvoiceDetailComponent } from './invoice-detail.component';
 
 describe('InvoiceDetailComponent', () => {
@@ -9,6 +11,7 @@ describe('InvoiceDetailComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [InvoiceDetailComponent],
+      imports: [RouterTestingModule.withRoutes(dashboardRoutes)],
     }).compileComponents();
   });
 
@@ -18,7 +21,7 @@ describe('InvoiceDetailComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

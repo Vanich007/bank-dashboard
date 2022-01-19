@@ -134,13 +134,13 @@
   line-height: 23px;
   color: #171b1e;
 }
-.outcome {
+.outcoming {
   color: red;
   &:after {
     content: "⇘";
   }
 }
-.income {
+.incoming {
   color: green;
   &:after {
     content: "⇗";

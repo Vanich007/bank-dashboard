@@ -3,12 +3,12 @@
   <mat-label>Выберите тип транзакций</mat-label>
   <section class="checkbox-horizontal">
     <ul>
-      <li *ngFor="let t of data.invoiceTypes">
+      <li *ngFor="let t of data.invoiceTypes | keyvalue">
         <mat-checkbox
           #checkbox
-          value="{{ t.type }}"
+          value="{{ t.value }}"
           (change)="toggleInvoiceTypes(checkbox)"
-          >{{ t.text }}</mat-checkbox
+          >{{ t.value }}</mat-checkbox
         >
       </li>
     </ul>
@@ -16,14 +16,29 @@
   <mat-label>Выберите период</mat-label>
   <section class="checkbox-horizontal">
     <ul>
-      <li *ngFor="let p of data.invoicePeriod">
+      <!-- <li *ngFor="let p of data.invoicePeriod">
         <mat-checkbox
           #checkbox
           value="{{ p.type }}"
           (change)="toggleInvoicePeriod(checkbox)"
           >{{ p.text }}</mat-checkbox
         >
+      </li> -->
+
+      <li *ngFor="let option of thisInvoiceEnumPeriod | keyvalue">
+        <mat-checkbox
+          #checkbox
+          [value]="option.value"
+          (change)="toggleInvoicePeriod(checkbox)"
+          >{{ option.value }}</mat-checkbox
+        >
       </li>
+
+      <!-- <mat-option
+        *ngFor="let option of thisInvoiceEnumPeriod | keyvalue"
+        [value]="option.value"
+        >{{ option.value }}</mat-option
+      > -->
     </ul>
   </section>
 

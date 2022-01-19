@@ -1,10 +1,14 @@
-import { InvoiceType } from '../../../types';
 import { InvoiceService } from './../invoice.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import {
+  InvoiceEnumPeriod,
+  InvoiceEnumType,
+  InvoiceType,
+} from './../../../types';
 
 export type InvoiceCopyType = {
   id?: number;
@@ -12,7 +16,7 @@ export type InvoiceCopyType = {
   amount: number;
   name: string;
   invoiceType: number;
-  period: number;
+  period: InvoiceEnumPeriod;
 };
 
 @Component({
@@ -21,6 +25,11 @@ export type InvoiceCopyType = {
   styleUrls: ['./invoice-detail.component.scss'],
 })
 export class InvoiceDetailComponent implements OnInit, OnDestroy {
+  thisInvoiceEnumPeriod = InvoiceEnumPeriod;
+  thisInvoiceEnumType = InvoiceEnumType;
+  // myInvoiceEnumPeriod: Array<string> = Object.keys(InvoiceEnumPeriod).filter(
+  //   (key) => isNaN(+key)
+  // );
   isLoaded: boolean = false;
   sub?: Subscription;
   isNewInvoice: boolean = false;
@@ -57,8 +66,8 @@ export class InvoiceDetailComponent implements OnInit, OnDestroy {
     amount: 0,
     date: new Date(),
     name: '',
-    invoiceType: 1,
-    period: 0,
+    invoiceType: InvoiceEnumType.incoming,
+    period: InvoiceEnumPeriod.mounthly,
   };
 
   constructor(
@@ -66,6 +75,7 @@ export class InvoiceDetailComponent implements OnInit, OnDestroy {
     private invoiceService: InvoiceService,
     private location: Location
   ) {}
+
   getInvoice(): void {
     const stringId = this.route.snapshot.paramMap.get('id');
     if (stringId === 'new') {

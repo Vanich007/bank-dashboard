@@ -23,8 +23,12 @@
         ([ngModel])="(typeFilter)"
         (selectionChange)="eventSelection($event)"
       >
-        <mat-option [value]="0">incoming</mat-option>
-        <mat-option [value]="1">outcoming</mat-option>
+        <mat-option
+          *ngFor="let t of thisInvoiceEnumType | keyvalue"
+          [value]="t.value"
+          >{{ t.value }}</mat-option
+        >
+        <mat-option [value]="'none'">No filter</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -48,13 +52,7 @@
       <a routerLink="detail/{{ invoice.id }}">
         <div class="transaction-id"># {{ invoice.id }}</div>
       </a>
-      <div
-        class="transaction-correspondent"
-        [ngClass]="{
-          income: invoice.invoiceType === 0,
-          outcome: invoice.invoiceType === 1
-        }"
-      >
+      <div class="transaction-correspondent" [ngClass]="invoice.invoiceType">
         {{ invoice.name | cutText: 12 }}
       </div>
     </div>
@@ -62,7 +60,7 @@
       <div class="amount">$ {{ invoice.amount }}</div>
 
       <div>
-        <p>{{ invoicePeriod[invoice.period].text }}</p>
+        <p>{{ invoice.period }}</p>
       </div>
     </div>
 

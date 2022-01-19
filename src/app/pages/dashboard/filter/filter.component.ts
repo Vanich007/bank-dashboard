@@ -1,4 +1,4 @@
-import { InvoiceType, InvoiceDir } from './../../../types';
+import { InvoiceType, InvoiceDir, InvoiceEnumPeriod } from './../../../types';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -14,13 +14,15 @@ export interface DialogData {
   styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent implements OnInit {
+  thisInvoiceEnumPeriod = InvoiceEnumPeriod;
   invoiceTypes: InvoiceDir[] = [];
-  invoicePeriod: InvoiceDir[] = [];
-  selectedInvoiceTypes: number[] = [];
-  selectedInvoicePeriod: number[] = [];
+  invoicePeriod: InvoiceEnumPeriod[] = [];
+  selectedInvoiceTypes: string[] = [];
+  selectedInvoicePeriod: string[] = [];
   ngOnInit(): void {
     this.data;
   }
+
   constructor(
     public dialogRef: MatDialogRef<FilterComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -33,22 +35,22 @@ export class FilterComponent implements OnInit {
     let { checked, value }: { checked: boolean; value: string } = checkbox;
     if (checked === false)
       this.selectedInvoiceTypes = this.selectedInvoiceTypes.filter(
-        (i) => i !== +value
+        (i) => i !== value
       );
     else
-      this.selectedInvoiceTypes.indexOf(+value) === -1
-        ? this.selectedInvoiceTypes.push(+value)
+      this.selectedInvoiceTypes.indexOf(value) === -1
+        ? this.selectedInvoiceTypes.push(value)
         : null;
   }
   toggleInvoicePeriod(checkbox: MatCheckbox) {
     let { checked, value } = checkbox;
     if (checked === false)
       this.selectedInvoicePeriod = this.selectedInvoicePeriod.filter(
-        (i) => i !== +value
+        (i) => i !== value
       );
     else
-      this.selectedInvoicePeriod.indexOf(+value) === -1
-        ? this.selectedInvoicePeriod.push(+value)
+      this.selectedInvoicePeriod.indexOf(value) === -1
+        ? this.selectedInvoicePeriod.push(value)
         : null;
   }
 }

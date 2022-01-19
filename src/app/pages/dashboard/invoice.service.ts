@@ -24,7 +24,6 @@ export class InvoiceService extends BaseApi {
   }
 
   setSearchConditions(value: string) {
-    debugger;
     this.searchConditions = `&q=${value}`;
   }
 

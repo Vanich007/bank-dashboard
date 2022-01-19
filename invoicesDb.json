@@ -19,72 +19,80 @@
       "amount": "28",
       "date": "2034-01-31T21:00:00.000Z",
       "name": "Dr Nice payment",
-      "period": 3,
-      "invoiceType": 1
+      "period": "mounthly",
+      "invoiceType": "incoming"
     },
     {
       "amount": "200",
       "date": "2018-08-17T21:00:00.000Z",
       "name": "Parents help",
-      "invoiceType": 0,
-      "period": 1,
+      "invoiceType": "incoming",
+      "period": "weekly",
       "id": 13
     },
     {
       "name": "salary",
       "amount": "202",
-      "invoiceType": 0,
-      "period": 2,
+      "invoiceType": "incoming",
+      "period": "weekly",
       "date": "2022-07-06T21:00:00.000Z",
       "id": 14
     },
     {
       "name": "Psychologist help",
       "amount": "30",
-      "invoiceType": 1,
-      "period": 2,
+      "invoiceType": "outcoming",
+      "period": "daily",
       "date": "2022-07-06T21:00:00.000Z",
       "id": 16
     },
     {
       "name": "home renovation",
       "amount": "50",
-      "invoiceType": 1,
-      "period": 2,
+      "invoiceType": "outcoming",
+      "period": "mounthly",
       "date": "2022-07-06T21:00:00.000Z",
       "id": 17
     },
     {
       "name": "to John",
       "amount": "20",
-      "invoiceType": 1,
-      "period": 2,
+      "invoiceType": "outcoming",
+      "period": "mounthly",
       "date": "2022-07-06T21:00:00.000Z",
       "id": 18
     },
     {
       "name": "Freelance inc",
       "amount": "200",
-      "invoiceType": 0,
-      "period": 2,
+      "invoiceType": "incoming",
+      "period": "mounthly",
       "date": "2022-07-06T21:00:00.000Z",
       "id": 19
     },
     {
       "name": "Car rent paiment",
       "amount": "202",
-      "invoiceType": 0,
-      "period": 2,
+      "invoiceType": "incoming",
+      "period": "mounthly",
       "date": "2022-07-06T21:00:00.000Z",
       "id": 20
     },
     {
       "name": "Government salary",
       "amount": "109",
-      "invoiceType": 0,
-      "period": 3,
+      "invoiceType": "incoming",
+      "period": "annualy",
       "date": "2018-08-17T21:00:00.000Z",
       "id": 21
+    },
+    {
+      "name": "Psychologist help",
+      "amount": "1",
+      "invoiceType": "incoming",
+      "period": "daily",
+      "date": "2001-04-09T20:00:00.000Z",
+      "id": 22
     }
   ]
 }

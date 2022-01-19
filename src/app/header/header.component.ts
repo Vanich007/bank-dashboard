@@ -3,6 +3,7 @@ import { UsersPageModule } from './../pages/users/login.module';
 import { AuthService } from './../shared/services/auth.service';
 import { InvoiceService } from './../pages/dashboard/invoice.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
     private invoiceService: InvoiceService,
     private authService: AuthService,
     private userService: UserService
-  ) {}
+  ) // private router: Router
+  {}
 
   ngOnInit(): void {
     const user = window.localStorage.getItem('user');

@@ -1,11 +1,12 @@
 import { FilterComponent } from './../filter/filter.component';
 import { MatDialog } from '@angular/material/dialog';
-import { InvoiceType, InvoiceDir } from './../../../types';
+import { InvoiceType, InvoiceDir, InvoiceEnumType } from './../../../types';
 import { InvoiceService } from './../invoice.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSelectChange } from '@angular/material/select';
 import { Subscription } from 'rxjs';
+import { InvoiceEnumPeriod } from './../../../types';
 
 export type StatisticType = {
   value: number;
@@ -19,25 +20,21 @@ export type StatisticType = {
   styleUrls: ['./invoices.component.scss'],
 })
 export class InvoicesComponent implements OnInit, OnDestroy {
-  invoiceTypes: InvoiceDir[] = [
-    {
-      type: 0,
-      text: 'incoming',
-    },
-    { type: 1, text: 'outcoming' },
-  ];
-  invoicePeriod: InvoiceDir[] = [
-    {
-      type: 0,
-      text: 'daily',
-    },
-    { type: 1, text: 'weekly' },
-    {
-      type: 2,
-      text: 'mounthly',
-    },
-    { type: 3, text: 'annually' },
-  ];
+  thisInvoiceEnumType = InvoiceEnumType;
+  thisInvoiceEnumPeriod = InvoiceEnumPeriod;
+  invoiceTypes: InvoiceType[] = [];
+  // invoicePeriod: InvoiceDir[] = [
+  //   {
+  //     type: 0,
+  //     text: 'daily',
+  //   },
+  //   { type: 1, text: 'weekly' },
+  //   {
+  //     type: 2,
+  //     text: 'mounthly',
+  //   },
+  //   { type: 3, text: 'annually' },
+  // ];
   mounthlyIncome = 0;
   mounthlyOutcome = 0;
   invoicesCount: number = 5;
@@ -45,7 +42,7 @@ export class InvoicesComponent implements OnInit, OnDestroy {
   outcoming: StatisticType[] = [];
   sub?: Subscription;
   allInvoices?: Subscription;
-  typeFilter = 2;
+  typeFilter: string = 'none';
   pageEvent?: PageEvent;
   datasource?: null;
   pageIndex?: number;
@@ -72,12 +69,14 @@ export class InvoicesComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(FilterComponent, {
       width: '450px',
       data: {
-        invoicePeriod: this.invoicePeriod,
-        invoiceTypes: this.invoiceTypes,
+        invoicePeriod: InvoiceEnumPeriod,
+        invoiceTypes: InvoiceEnumType,
       },
     });
 
     dialogRef.afterClosed().subscribe((conditions) => {
+      console.log('condishions', conditions);
+
       this.invoicesService.setConditions(conditions);
       this.invoicesService.getInvoicesPart(0, 4);
       this.allInvoices = this.invoicesService.getInvoices().subscribe((i) => {
@@ -101,17 +100,19 @@ export class InvoicesComponent implements OnInit, OnDestroy {
 
       this.mounthlyIncome = 0;
       this.incoming = i
-        .filter((item: InvoiceType) => item.invoiceType === 0)
+        .filter(
+          (item: InvoiceType) => item.invoiceType === InvoiceEnumType.incoming
+        )
         .map((item: InvoiceType) => {
           let coefficient;
           switch (item.period) {
-            case 0:
+            case InvoiceEnumPeriod.dayly:
               coefficient = 365;
               break;
-            case 1:
+            case InvoiceEnumPeriod.weekly:
               coefficient = 56;
               break;
-            case 2:
+            case InvoiceEnumPeriod.mounthly:
               coefficient = 12;
               break;
 
@@ -129,17 +130,19 @@ export class InvoicesComponent implements OnInit, OnDestroy {
 
       this.mounthlyOutcome = 0;
       this.outcoming = i
-        .filter((item: InvoiceType) => item.invoiceType === 1)
+        .filter(
+          (item: InvoiceType) => item.invoiceType === InvoiceEnumType.outcoming
+        )
         .map((item: InvoiceType) => {
           let coefficient;
           switch (item.period) {
-            case 0:
+            case InvoiceEnumPeriod.dayly:
               coefficient = 365;
               break;
-            case 1:
+            case InvoiceEnumPeriod.weekly:
               coefficient = 56;
               break;
-            case 2:
+            case InvoiceEnumPeriod.mounthly:
               coefficient = 12;
               break;
 

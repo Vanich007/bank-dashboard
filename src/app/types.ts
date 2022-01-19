@@ -11,22 +11,22 @@ export type invoicesStatisticsType = {
   totalInvoicesSent: number;
 };
 export enum InvoiceEnumType {
-  incoming,
-  outcoming,
+  incoming = 'incoming',
+  outcoming = 'outcoming',
 }
 export enum InvoiceEnumPeriod {
-  dayly,
-  weekly,
-  mounthly,
-  annually,
+  dayly = 'daily',
+  weekly = 'weekly',
+  mounthly = 'mounthly',
+  annually = 'annually',
 }
 export type InvoiceType = {
   id: number;
   date: Date;
   amount: number;
   name: string;
-  invoiceType: number;
-  period: number;
+  invoiceType: InvoiceEnumType;
+  period: InvoiceEnumPeriod;
 };
 export type UserType = {
   email: string;

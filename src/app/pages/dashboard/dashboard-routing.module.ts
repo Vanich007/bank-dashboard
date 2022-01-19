@@ -5,7 +5,7 @@ import { SiteLayoutComponent } from '../../shared/layouts/site-layout/site-layou
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const dashboardRoutes: Routes = [
+export const dashboardRoutes: Routes = [
   {
     path: 'dashboard',
     component: SiteLayoutComponent,
