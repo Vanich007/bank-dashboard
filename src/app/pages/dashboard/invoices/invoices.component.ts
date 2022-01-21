@@ -20,6 +20,8 @@ export type StatisticType = {
   styleUrls: ['./invoices.component.scss'],
 })
 export class InvoicesComponent implements OnInit, OnDestroy {
+  showChart: boolean = false;
+
   thisInvoiceEnumType = InvoiceEnumType;
   thisInvoiceEnumPeriod = InvoiceEnumPeriod;
   invoiceTypes: InvoiceType[] = [];
@@ -170,5 +172,8 @@ export class InvoicesComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.sub?.unsubscribe();
+  }
+  toggleShowCharts() {
+    this.showChart = !this.showChart;
   }
 }

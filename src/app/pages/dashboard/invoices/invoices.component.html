@@ -3,8 +3,10 @@
   [outcomeInvoices]="mounthlyOutcome"
   [mounthlyDifference]="mounthlyIncome - mounthlyOutcome"
 ></app-invoice-blocks>
+<button (click)="toggleShowCharts()"></button>
 <div class="charts">
   <app-pie-chart
+    *ngIf="showChart"
     [data]="incoming"
     [type]="'Incoming invoices: ' + mounthlyIncome + '$ mounthly'"
   ></app-pie-chart>
