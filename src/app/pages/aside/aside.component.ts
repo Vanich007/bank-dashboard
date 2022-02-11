@@ -5,7 +5,7 @@ type menuItemType = { id: number; src: string; class: string; text: string };
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.scss'],
 })
-export class AsideComponent {
+export class AsideComponent implements OnInit {
   menuItems: menuItemType[] = [
     { id: 1, src: '/mywallet', class: 'wallet', text: 'My Wallet' },
     { id: 2, src: '/payment', class: 'payment', text: 'Payment' },
@@ -14,4 +14,6 @@ export class AsideComponent {
     { id: 5, src: '/payment', class: 'transactions', text: 'Transactions' },
   ];
   constructor() {}
+
+  ngOnInit(): void {}
 }

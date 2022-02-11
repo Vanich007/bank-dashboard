@@ -1,7 +1,5 @@
 <div class="transaction-table">
-  <div *ngIf="invoiceName$ | async as string">
-    {{ invoiceName$ | async }} - {{ invoiceAmount$ | async }}
-  </div>
+  {{ invoiceName | async }} - {{ invoiceAmount | async }}
   <mat-card *ngIf="isLoaded">
     <form (ngSubmit)="onSubmit()" [formGroup]="form">
       <div class="double">

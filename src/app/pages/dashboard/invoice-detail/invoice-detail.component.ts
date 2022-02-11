@@ -26,9 +26,9 @@ export type InvoiceCopyType = {
   styleUrls: ['./invoice-detail.component.scss'],
 })
 export class InvoiceDetailComponent implements OnInit, OnDestroy {
-  invoiceStream$: Observable<InvoiceType> | undefined;
-  invoiceName$: Observable<string> | undefined;
-  invoiceAmount$: Observable<number> | undefined;
+  s: Observable<InvoiceType> | undefined;
+  invoiceName: Observable<string> | undefined;
+  invoiceAmount: Observable<number> | undefined;
   thisInvoiceEnumPeriod = InvoiceEnumPeriod;
   thisInvoiceEnumType = InvoiceEnumType;
   // myInvoiceEnumPeriod: Array<string> = Object.keys(InvoiceEnumPeriod).filter(
@@ -87,15 +87,15 @@ export class InvoiceDetailComponent implements OnInit, OnDestroy {
     }
     const id = Number(stringId);
 
-    this.invoiceStream$ = this.invoiceService.getInvoice(id).pipe(share());
-    this.sub = this.invoiceStream$.subscribe((i) => {
+    this.s = this.invoiceService.getInvoice(id).pipe(share());
+    this.sub = this.s.subscribe((i) => {
       this.form.patchValue(i);
 
       this.isLoaded = true;
     });
 
-    this.invoiceName$ = this.invoiceStream$.pipe(map((i) => i.name));
-    this.invoiceAmount$ = this.invoiceStream$.pipe(map((i) => i.amount));
+    this.invoiceName = this.s.pipe(map((i) => i.name));
+    this.invoiceAmount = this.s.pipe(map((i) => i.amount));
   }
   goBack(): void {
     this.location.back();

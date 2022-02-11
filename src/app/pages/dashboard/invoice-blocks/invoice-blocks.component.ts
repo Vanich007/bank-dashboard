@@ -9,9 +9,12 @@ import { Subscription } from 'rxjs';
   templateUrl: './invoice-blocks.component.html',
   styleUrls: ['./invoice-blocks.component.scss'],
 })
-export class InvoiceBlocksComponent {
+export class InvoiceBlocksComponent implements OnInit, OnDestroy {
   @Input() mounthlyDifference: number = 0;
   @Input() incomeInvoices: number = 0;
   @Input() outcomeInvoices: number = 0;
   constructor() {}
+
+  ngOnInit(): void {}
+  ngOnDestroy() {}
 }

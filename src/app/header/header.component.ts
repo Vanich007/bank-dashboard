@@ -11,15 +11,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Output() ChangeSearchWord = new EventEmitter();
+  @Output() onChangeSearchWord = new EventEmitter();
   email: string = '';
   name: string = '';
 
   constructor(
     private invoiceService: InvoiceService,
     private authService: AuthService,
-    private userService: UserService // private router: Router
-  ) {}
+    private userService: UserService
+  ) // private router: Router
+  {}
 
   ngOnInit(): void {
     const user = window.localStorage.getItem('user');
@@ -38,7 +39,7 @@ export class HeaderComponent implements OnInit {
   onSearch(value: string) {
     this.invoiceService.setSearchConditions(value);
     this.invoiceService.getInvoicesPart(0, 4);
-    this.ChangeSearchWord.emit('');
+    this.onChangeSearchWord.emit('');
   }
   logout() {
     this.authService.logout();
