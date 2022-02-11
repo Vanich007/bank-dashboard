@@ -7,7 +7,7 @@ import { LegendPosition } from '@swimlane/ngx-charts';
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss'],
 })
-export class PieChartComponent implements OnInit {
+export class PieChartComponent {
   public legendPosition: LegendPosition = LegendPosition.Below;
   @Input() type: string = '';
   @Input() data: StatisticType[] = [];
@@ -29,5 +29,4 @@ export class PieChartComponent implements OnInit {
   onSelect(data: StatisticType): void {
     console.log('Selected ', data.name, data.value);
   }
-  ngOnInit(): void {}
 }

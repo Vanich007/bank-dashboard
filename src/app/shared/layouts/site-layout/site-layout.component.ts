@@ -5,9 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './site-layout.component.html',
   styleUrls: ['./site-layout.component.scss'],
 })
-export class SiteLayoutComponent implements OnInit {
+export class SiteLayoutComponent {
   onChangeSearchWord() {}
   constructor() {}
-
-  ngOnInit(): void {}
 }

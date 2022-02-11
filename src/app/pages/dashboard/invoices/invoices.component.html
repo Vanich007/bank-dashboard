@@ -21,10 +21,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Select filter</mat-label>
-      <mat-select
-        ([ngModel])="(typeFilter)"
-        (selectionChange)="eventSelection($event)"
-      >
+      <mat-select (selectionChange)="eventSelection($event)">
         <mat-option
           *ngFor="let t of thisInvoiceEnumType | keyvalue"
           [value]="t.value"
